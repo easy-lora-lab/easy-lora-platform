@@ -1,0 +1,27 @@
+LlamaFactory/
+.codex
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node / Next.js
+node_modules/
+.next/
+*.tsbuildinfo
+
+# Local runtime state
+*.db
+.env
+.env.*
+
+# EasyTune generated storage
+easytune/backend/app/storage/configs/*
+easytune/backend/app/storage/datasets/*
+easytune/backend/app/storage/llamafactory_data/*
+easytune/backend/app/storage/logs/*
+easytune/backend/app/storage/outputs/*
+easytune/backend/app/storage/reports/*
+!easytune/backend/app/storage/**/.gitkeep
