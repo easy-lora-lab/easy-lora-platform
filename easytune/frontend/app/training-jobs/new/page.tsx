@@ -130,6 +130,7 @@ export default function NewTrainingJobPage() {
                 onChange={(event) => setFinetuningType(event.target.value)}
               >
                 <option value="lora">lora</option>
+                <option value="qlora">qlora</option>
                 <option value="freeze">freeze</option>
                 <option value="full">full</option>
               </select>

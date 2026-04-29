@@ -30,6 +30,25 @@ class DatasetInfoResponse(BaseModel):
     dataset_info_json: dict[str, Any] | None
 
 
+class DatasetPreviewResponse(BaseModel):
+    dataset_id: int
+    records: list[dict[str, Any]]
+    total_records: int
+
+
+class DatasetSplitRequest(BaseModel):
+    valid_ratio: float = Field(default=0.1, ge=0.01, le=0.5)
+    seed: int = 42
+
+
+class DatasetSplitResponse(BaseModel):
+    dataset_id: int
+    train_path: str
+    valid_path: str
+    train_count: int
+    valid_count: int
+
+
 class TrainingJobCreate(BaseModel):
     name: str = Field(min_length=1, max_length=255)
     dataset_id: int
@@ -86,6 +105,22 @@ class ValidationRecordCreate(BaseModel):
     actual_answer: str = Field(min_length=1)
     human_score: int = Field(ge=1, le=5)
     human_note: str | None = None
+
+
+class ValidationGenerateRequest(BaseModel):
+    model_version_id: int
+    prompt: str = Field(min_length=1)
+    system_prompt: str | None = None
+    temperature: float = Field(default=0.2, ge=0, le=2)
+    max_tokens: int = Field(default=512, ge=1, le=8192)
+
+
+class ValidationGenerateResponse(BaseModel):
+    model_version_id: int
+    provider: str
+    model: str
+    actual_answer: str
+    raw_response: dict[str, Any] | None = None
 
 
 class ValidationRecordRead(ORMModel):

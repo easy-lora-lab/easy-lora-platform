@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { TrainingJob, apiFetch } from "../../../lib/api";
 import styles from "../../shared.module.scss";
@@ -27,14 +27,14 @@ export default function TrainingJobDetailPage() {
   const [logs, setLogs] = useState("");
   const [error, setError] = useState("");
 
-  async function load() {
+  const load = useCallback(async () => {
     const [jobData, logData] = await Promise.all([
       apiFetch<TrainingJob>(`/api/training-jobs/${jobId}`),
       apiFetch<LogsResponse>(`/api/training-jobs/${jobId}/logs`)
     ]);
     setJob(jobData);
     setLogs(logData.content);
-  }
+  }, [jobId]);
 
   useEffect(() => {
     load().catch((err: Error) => setError(err.message));
@@ -42,7 +42,7 @@ export default function TrainingJobDetailPage() {
       load().catch((err: Error) => setError(err.message));
     }, 2000);
     return () => window.clearInterval(timer);
-  }, [jobId]);
+  }, [load]);
 
   async function start() {
     setError("");

@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
-import { ModelVersion, ValidationRecord, apiFetch } from "../../lib/api";
+import { ModelVersion, ValidationGenerateResponse, ValidationRecord, apiFetch } from "../../lib/api";
 import styles from "../shared.module.scss";
 
 export default function ValidationPage() {
@@ -15,6 +15,7 @@ export default function ValidationPage() {
   const [humanNote, setHumanNote] = useState("");
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+  const [generating, setGenerating] = useState(false);
 
   useEffect(() => {
     apiFetch<ModelVersion[]>("/api/model-versions")
@@ -45,6 +46,33 @@ export default function ValidationPage() {
       setHumanNote("");
     } catch (err) {
       setError((err as Error).message);
+    }
+  }
+
+  async function generateAnswer() {
+    if (!modelVersionId || !prompt) {
+      setError("请选择模型版本并填写 prompt。");
+      return;
+    }
+    setError("");
+    setNotice("");
+    setGenerating(true);
+    try {
+      const response = await apiFetch<ValidationGenerateResponse>("/api/validation-records/generate", {
+        method: "POST",
+        body: JSON.stringify({
+          model_version_id: Number(modelVersionId),
+          prompt,
+          temperature: 0.2,
+          max_tokens: 512
+        })
+      });
+      setActualAnswer(response.actual_answer);
+      setNotice(`已通过 ${response.provider} / ${response.model} 生成实际答案。`);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setGenerating(false);
     }
   }
 
@@ -101,6 +129,17 @@ export default function ValidationPage() {
               value={actualAnswer}
               onChange={(event) => setActualAnswer(event.target.value)}
             />
+          </div>
+
+          <div className={styles.actions}>
+            <button
+              className={styles.secondaryButton}
+              disabled={generating || !modelVersionId || !prompt}
+              onClick={generateAnswer}
+              type="button"
+            >
+              {generating ? "生成中..." : "生成实际答案"}
+            </button>
           </div>
 
           <div className={styles.inlineFields}>

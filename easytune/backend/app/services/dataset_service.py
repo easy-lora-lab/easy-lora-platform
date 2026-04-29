@@ -1,5 +1,6 @@
 import csv
 import json
+import random
 import re
 from datetime import datetime
 from io import StringIO
@@ -89,6 +90,8 @@ def analyze_file(path: Path, file_type: str) -> dict[str, Any]:
 
     return {
         "is_empty": path.stat().st_size == 0 or sample_count == 0,
+        "line_count": len(raw_lines),
+        "non_empty_line_count": len(non_empty_lines),
         "sample_count": sample_count,
         "empty_line_count": empty_line_count,
         "max_line_length": max(line_lengths, default=0),
@@ -242,6 +245,61 @@ def convert_dataset(db: Session, dataset_id: int) -> Dataset:
     db.commit()
     db.refresh(dataset)
     return dataset
+
+
+def preview_dataset(db: Session, dataset_id: int, limit: int = 8) -> tuple[list[dict[str, Any]], int]:
+    dataset = db.get(Dataset, dataset_id)
+    if not dataset:
+        raise HTTPException(status_code=404, detail="Dataset not found.")
+    records = load_dataset_records(dataset)
+    return records[: max(1, min(limit, 50))], len(records)
+
+
+def split_dataset(db: Session, dataset_id: int, valid_ratio: float = 0.1, seed: int = 42) -> dict[str, Any]:
+    dataset = db.get(Dataset, dataset_id)
+    if not dataset:
+        raise HTTPException(status_code=404, detail="Dataset not found.")
+    if dataset.status != "converted" or not dataset.converted_file_path:
+        raise HTTPException(status_code=400, detail="Dataset must be converted before splitting.")
+
+    source_path = Path(dataset.converted_file_path)
+    records = [
+        json.loads(line)
+        for line in source_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    if len(records) < 2:
+        raise HTTPException(status_code=400, detail="Dataset needs at least 2 records for train/valid split.")
+
+    indices = list(range(len(records)))
+    random.Random(seed).shuffle(indices)
+    valid_count = max(1, int(round(len(records) * valid_ratio)))
+    valid_indices = set(indices[:valid_count])
+    train_records = [record for index, record in enumerate(records) if index not in valid_indices]
+    valid_records = [record for index, record in enumerate(records) if index in valid_indices]
+
+    train_path = STORAGE_ROOT / "llamafactory_data" / f"{dataset_name(dataset.id)}_train.jsonl"
+    valid_path = STORAGE_ROOT / "llamafactory_data" / f"{dataset_name(dataset.id)}_valid.jsonl"
+    _write_jsonl(train_path, train_records)
+    _write_jsonl(valid_path, valid_records)
+
+    split_info = {
+        "valid_ratio": valid_ratio,
+        "seed": seed,
+        "train_path": str(train_path),
+        "valid_path": str(valid_path),
+        "train_count": len(train_records),
+        "valid_count": len(valid_records),
+    }
+    dataset.report_json = {**(dataset.report_json or {}), "split": split_info}
+    db.commit()
+    return {"dataset_id": dataset.id, **split_info}
+
+
+def _write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
+    with path.open("w", encoding="utf-8") as handle:
+        for record in records:
+            handle.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
 def _normalize_for_llamafactory(

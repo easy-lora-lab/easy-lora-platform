@@ -10,12 +10,14 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
-  { href: "/datasets", label: "数据集管理" },
-  { href: "/training-jobs/new", label: "创建训练任务" },
-  { href: "/training-jobs", label: "训练任务" },
-  { href: "/model-versions", label: "模型版本" },
-  { href: "/validation", label: "人工验收" },
-  { href: "/validation-records", label: "验收记录" }
+  { href: "/", label: "Dashboard" },
+  { href: "/datasets", label: "Dataset" },
+  { href: "/training-jobs/new", label: "Create Fine-tune" },
+  { href: "/training-jobs", label: "Training Monitor" },
+  { href: "/evaluation", label: "Evaluation" },
+  { href: "/playground", label: "Chat Playground" },
+  { href: "/model-versions", label: "Model Registry" },
+  { href: "/deploy", label: "Deploy / Inference" }
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -23,10 +25,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-CN">
       <body>
         <div className={styles.shell}>
-          <header className={styles.header}>
+          <aside className={styles.header}>
             <Link className={styles.brand} href="/">
               <strong>EasyTune</strong>
-              <span>围绕 LLaMA-Factory / RWKV 的私有化微调外壳</span>
+              <span>Private fine-tuning control plane</span>
             </Link>
             <nav className={styles.nav}>
               {navItems.map((item) => (
@@ -35,8 +37,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
             </nav>
-          </header>
-          <main className={styles.main}>{children}</main>
+            <div className={styles.sidebarNote}>
+              <span>本地部署</span>
+              <strong>Qwen / RWKV</strong>
+              <small>数据、训练、日志、版本和验收记录统一管理。</small>
+            </div>
+          </aside>
+          <div className={styles.workspace}>
+            <header className={styles.topbar}>
+              <div>
+                <span className={styles.eyebrow}>EasyTune MVP</span>
+                <strong>训练任务工作台</strong>
+              </div>
+              <div className={styles.healthPill}>
+                <span />
+                Backend API configurable
+              </div>
+            </header>
+            <main className={styles.main}>{children}</main>
+          </div>
         </div>
       </body>
     </html>

@@ -17,6 +17,8 @@ backend/app/storage/logs/*
 !backend/app/storage/logs/.gitkeep
 backend/app/storage/reports/*
 !backend/app/storage/reports/.gitkeep
+backend/app/storage/registry/*
+!backend/app/storage/registry/.gitkeep
 
 frontend/node_modules/
 frontend/.next/

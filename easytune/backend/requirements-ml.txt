@@ -1,0 +1,29 @@
+# Optional local GPU/runtime dependencies for real training and inference.
+# Install this on the machine that hosts the EasyTune backend.
+
+# Qwen inference and adapter loading
+torch
+transformers
+peft
+accelerate
+bitsandbytes
+
+# LLaMA-Factory / Qwen training extras
+datasets
+trl
+sentencepiece
+protobuf
+
+# RWKV-PEFT training
+lightning>=2.0.0
+deepspeed
+einops
+triton
+rwkv-fla
+rwkv
+jsonlines
+
+# RWKV Lightning inference server
+robyn
+numpy
+ninja

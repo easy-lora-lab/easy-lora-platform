@@ -26,3 +26,25 @@ app.include_router(datasets.router)
 app.include_router(training_jobs.router)
 app.include_router(model_versions.router)
 app.include_router(validation.router)
+
+
+@app.get("/")
+def root() -> dict[str, object]:
+    return {
+        "name": "EasyTune API",
+        "version": app.version,
+        "docs": "/docs",
+        "health": "/api/health",
+        "routes": {
+            "datasets": "/api/datasets",
+            "training_jobs": "/api/training-jobs",
+            "model_versions": "/api/model-versions",
+            "validation_records": "/api/validation-records",
+            "validation_generate": "/api/validation-records/generate",
+        },
+    }
+
+
+@app.get("/api")
+def api_index() -> dict[str, object]:
+    return root()

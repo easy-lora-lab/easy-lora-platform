@@ -28,6 +28,7 @@ STORAGE_DIRS = [
     "outputs",
     "logs",
     "reports",
+    "registry",
 ]
 
 

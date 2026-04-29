@@ -24,4 +24,5 @@ easytune/backend/app/storage/llamafactory_data/*
 easytune/backend/app/storage/logs/*
 easytune/backend/app/storage/outputs/*
 easytune/backend/app/storage/reports/*
+easytune/backend/app/storage/registry/*
 !easytune/backend/app/storage/**/.gitkeep

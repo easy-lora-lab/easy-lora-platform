@@ -1,4 +1,5 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+const DEFAULT_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
+const API_BASE_STORAGE_KEY = "easytune_api_base_url";
 
 export type Dataset = {
   id: number;
@@ -59,8 +60,16 @@ export type ValidationRecord = {
   created_at: string;
 };
 
+export type ValidationGenerateResponse = {
+  model_version_id: number;
+  provider: string;
+  model: string;
+  actual_answer: string;
+  raw_response: Record<string, unknown> | null;
+};
+
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const response = await fetch(`${getApiBaseUrl()}${path}`, {
     ...init,
     cache: "no-store",
     headers: init?.body instanceof FormData ? init.headers : { "Content-Type": "application/json", ...init?.headers }
@@ -90,4 +99,18 @@ export async function uploadDataset(file: File, name?: string): Promise<Dataset>
   });
 }
 
-export { API_BASE_URL };
+export function getApiBaseUrl(): string {
+  if (typeof window === "undefined") {
+    return DEFAULT_API_BASE_URL;
+  }
+  return window.localStorage.getItem(API_BASE_STORAGE_KEY) || DEFAULT_API_BASE_URL;
+}
+
+export function setApiBaseUrl(value: string): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+  window.localStorage.setItem(API_BASE_STORAGE_KEY, value.replace(/\/$/, ""));
+}
+
+export { DEFAULT_API_BASE_URL };
