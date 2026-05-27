@@ -91,6 +91,17 @@ export function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+function normalizeApiBaseUrl(value: string): string {
+  return value.trim().replace(/\/+$/, "");
+}
+
+function buildApiUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+  return new URL(path, `${getApiBaseUrl()}/`).toString();
+}
+
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers(init?.headers);
   if (!(init?.body instanceof FormData) && !headers.has("Content-Type")) {
@@ -100,7 +111,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
   if (apiToken && !headers.has("Authorization")) {
     headers.set("Authorization", `Bearer ${apiToken}`);
   }
-  const response = await fetch(`${getApiBaseUrl()}${path}`, {
+  const response = await fetch(buildApiUrl(path), {
     ...init,
     cache: "no-store",
     headers
@@ -132,16 +143,16 @@ export async function uploadDataset(file: File, name?: string): Promise<Dataset>
 
 export function getApiBaseUrl(): string {
   if (typeof window === "undefined") {
-    return DEFAULT_API_BASE_URL;
+    return normalizeApiBaseUrl(DEFAULT_API_BASE_URL);
   }
-  return window.localStorage.getItem(API_BASE_STORAGE_KEY) || DEFAULT_API_BASE_URL;
+  return normalizeApiBaseUrl(window.localStorage.getItem(API_BASE_STORAGE_KEY) || DEFAULT_API_BASE_URL);
 }
 
 export function setApiBaseUrl(value: string): void {
   if (typeof window === "undefined") {
     return;
   }
-  window.localStorage.setItem(API_BASE_STORAGE_KEY, value.replace(/\/$/, ""));
+  window.localStorage.setItem(API_BASE_STORAGE_KEY, normalizeApiBaseUrl(value));
 }
 
 export function getApiToken(): string {

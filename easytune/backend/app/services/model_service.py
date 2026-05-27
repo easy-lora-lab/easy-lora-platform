@@ -32,12 +32,13 @@ def create_model_version_for_job(db: Session, job: TrainingJob) -> ModelVersion:
 
     manifest = _build_export_manifest(job)
     export_path = manifest["export_path"]
+    adapter_path = manifest["adapter_path"]
     status = "ready" if manifest["has_adapter_artifact"] else "incomplete"
     model_version = ModelVersion(
         training_job_id=job.id,
         name=f"{job.name} v1",
         base_model=job.base_model,
-        adapter_path=job.output_dir or "",
+        adapter_path=adapter_path,
         export_path=export_path,
         status=status,
     )
@@ -54,8 +55,9 @@ def _build_export_manifest(job: TrainingJob) -> dict[str, Any]:
     output_dir = Path(job.output_dir or "").resolve()
     export_dir = output_dir / "export"
     files = _scan_artifacts(output_dir)
+    adapter_path = _select_adapter_path(output_dir, files)
     total_size = sum(item["size_bytes"] for item in files)
-    has_adapter_artifact = any(item["name"] in ADAPTER_ARTIFACT_NAMES for item in files)
+    has_adapter_artifact = adapter_path is not None
     return {
         "manifest_version": 1,
         "model_version_id": None,
@@ -63,7 +65,7 @@ def _build_export_manifest(job: TrainingJob) -> dict[str, Any]:
         "training_job_name": job.name,
         "model_family": job.model_family,
         "base_model": job.base_model,
-        "adapter_path": str(output_dir),
+        "adapter_path": str(adapter_path or output_dir),
         "export_path": str(export_dir),
         "created_at": datetime.utcnow().isoformat(),
         "artifact_count": len(files),
@@ -71,6 +73,23 @@ def _build_export_manifest(job: TrainingJob) -> dict[str, Any]:
         "has_adapter_artifact": has_adapter_artifact,
         "files": files,
     }
+
+
+def _select_adapter_path(output_dir: Path, files: list[dict[str, Any]]) -> Path | None:
+    candidate_dirs = sorted(
+        {
+            str(Path(item["path"]).parent)
+            for item in files
+            if item["name"] in ADAPTER_ARTIFACT_NAMES
+        }
+    )
+    if not candidate_dirs:
+        return None
+
+    selected_dir = candidate_dirs[-1]
+    if selected_dir == ".":
+        return output_dir
+    return output_dir / selected_dir
 
 
 def _scan_artifacts(output_dir: Path) -> list[dict[str, Any]]:
