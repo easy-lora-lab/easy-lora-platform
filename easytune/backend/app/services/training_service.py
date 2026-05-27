@@ -25,7 +25,7 @@ VALID_MODEL_FAMILIES = {"qwen", "rwkv"}
 VALID_TEMPLATES = {"qwen", "rwkv", "default"}
 VALID_FINETUNING_TYPES = {"lora", "qlora", "freeze", "full"}
 VALID_BUDGETS = {"low", "balanced", "high"}
-ACTIVE_JOB_STATUSES = {"starting", "running"}
+ACTIVE_JOB_STATUSES = {"running"}
 VENDOR_ROOT = APP_DIR / "vendor"
 RWKV_PEFT_ROOT = VENDOR_ROOT / "rwkv_peft"
 LLAMAFACTORY_ROOT = VENDOR_ROOT / "llamafactory"
@@ -80,7 +80,7 @@ def mark_job_running(db: Session, job_id: int) -> TrainingJob:
 
     updated = (
         db.query(TrainingJob)
-        .filter(TrainingJob.id == job_id, TrainingJob.status.notin_([*ACTIVE_JOB_STATUSES, "completed"]))
+        .filter(TrainingJob.id == job_id, TrainingJob.status != "running", TrainingJob.status != "completed")
         .update(
             {
                 "status": "starting",
@@ -242,7 +242,7 @@ def _build_training_command(job: TrainingJob, runner: dict[str, Any]) -> list[st
     if kind == "rwkv_peft_vendor":
         return _build_rwkv_peft_command(job)
     if kind == "llamafactory_vendor":
-        return [sys.executable, "-m", "llamafactory.cli", "train", job.config_path or ""]
+        return [sys.executable, "-m", "llamafactory.cli", job.config_path or ""]
     return [runner["cli_path"], "train", job.config_path or ""]
 
 
@@ -313,7 +313,7 @@ def _env_with_pythonpath(path: str) -> dict[str, str]:
 
 
 def _modules_available(module_names: list[str]) -> bool:
-    return all(importlib.util.find_spec(module_name) is not None for module_name in module_names)
+    return any(importlib.util.find_spec(module_name) is not None for module_name in module_names)
 
 
 def _runner_version(runner: dict[str, Any]) -> str | None:

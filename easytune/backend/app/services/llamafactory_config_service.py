@@ -159,7 +159,6 @@ def _write_config_response(
 def _write_rwkv_peft_sft_dataset(dataset: Dataset) -> Path:
     source_path = Path(dataset.converted_file_path or "")
     target_path = STORAGE_ROOT / "llamafactory_data" / f"{dataset_name(dataset.id)}_rwkv_sft.jsonl"
-    written = 0
     with target_path.open("w", encoding="utf-8") as handle:
         for line in source_path.read_text(encoding="utf-8").splitlines():
             if not line.strip():
@@ -167,10 +166,6 @@ def _write_rwkv_peft_sft_dataset(dataset: Dataset) -> Path:
             query, response = _record_to_query_response(json.loads(line))
             if query and response:
                 handle.write(json.dumps({"query": query, "response": response}, ensure_ascii=False) + "\n")
-                written += 1
-    if written == 0:
-        target_path.unlink(missing_ok=True)
-        raise HTTPException(status_code=400, detail="Converted dataset has no usable RWKV SFT query/response pairs.")
     return target_path
 
 

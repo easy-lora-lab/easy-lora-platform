@@ -65,7 +65,7 @@ def _call_qwen_transformers(
             torch_dtype=getattr(torch, os.getenv("EASYTUNE_QWEN_TORCH_DTYPE", "bfloat16")),
             trust_remote_code=True,
         )
-        if adapter_path and os.path.exists(adapter_path):
+        if adapter_path and os.path.isfile(adapter_path):
             try:
                 from peft import PeftModel
 
@@ -157,7 +157,7 @@ def _call_openai_compatible(
     api_key = os.getenv("EASYTUNE_INFERENCE_API_KEY")
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
-    response = _post_json(f"{base_url}/chat/completions", body, headers=headers)
+    response = _post_json(f"{base_url}/v1/chat/completions", body, headers=headers)
     content = _extract_openai_content(response)
     return ValidationGenerateResponse(
         model_version_id=model_version.id,
