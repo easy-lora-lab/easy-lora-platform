@@ -3,29 +3,9 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
-import { Dataset, ModelVersion, TrainingJob, apiFetch } from "../lib/api";
+import { Dataset, Health, ModelVersion, TrainingJob, apiFetch, errorMessage } from "../lib/api";
 import styles from "./shared.module.scss";
-
-type Health = {
-  status: string;
-  llamafactory_cli_available: boolean;
-  rwkv_finetune_available: boolean;
-  inference_provider: string;
-  inference_base_url: string | null;
-  gpus: Array<{
-    name: string;
-    memory_used_mb: string;
-    memory_total_mb: string;
-    utilization_percent: string;
-  }>;
-};
-
-function statusClass(status: string) {
-  if (status === "completed" || status === "ready") return `${styles.status} ${styles.statusReady}`;
-  if (status === "running") return `${styles.status} ${styles.statusRunning}`;
-  if (status === "failed" || status === "incomplete") return `${styles.status} ${styles.statusFailed}`;
-  return styles.status;
-}
+import { statusClass } from "./ui";
 
 export default function DashboardPage() {
   const [health, setHealth] = useState<Health | null>(null);
@@ -47,7 +27,7 @@ export default function DashboardPage() {
         setJobs(jobData);
         setVersions(versionData);
       })
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   const failedJobs = useMemo(() => jobs.filter((job) => job.status === "failed"), [jobs]);

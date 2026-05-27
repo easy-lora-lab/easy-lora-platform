@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
-import { Dataset, TrainingJob, apiFetch } from "../../../lib/api";
+import { Dataset, TrainingJob, apiFetch, errorMessage } from "../../../lib/api";
 import styles from "../../shared.module.scss";
 
 export default function NewTrainingJobPage() {
@@ -22,7 +22,7 @@ export default function NewTrainingJobPage() {
   useEffect(() => {
     apiFetch<Dataset[]>("/api/datasets")
       .then((items) => setDatasets(items))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   const convertedDatasets = useMemo(() => datasets.filter((dataset) => dataset.status === "converted"), [datasets]);
@@ -52,7 +52,7 @@ export default function NewTrainingJobPage() {
       });
       router.push(`/training-jobs/${created.id}`);
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     } finally {
       setLoading(false);
     }

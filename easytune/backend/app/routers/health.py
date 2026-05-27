@@ -54,6 +54,8 @@ def health() -> dict[str, object]:
         "rwkv_finetune_available": shutil.which("rwkv-finetune") is not None,
         "inference_provider": os.getenv("EASYTUNE_INFERENCE_PROVIDER", "disabled"),
         "inference_base_url": os.getenv("EASYTUNE_INFERENCE_BASE_URL"),
+        "api_token_required": bool(os.getenv("EASYTUNE_API_TOKEN")),
+        "cors_origins": os.getenv("EASYTUNE_CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000"),
         "gpus": gpu_summary(),
         "vendor": {
             "rwkv_lightning": (APP_DIR / "vendor" / "rwkv_lightning" / "app.py").exists(),

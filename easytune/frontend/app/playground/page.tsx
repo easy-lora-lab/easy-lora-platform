@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
-import { ModelVersion, ValidationGenerateResponse, apiFetch } from "../../lib/api";
+import { ModelVersion, ValidationGenerateResponse, apiFetch, errorMessage } from "../../lib/api";
 import styles from "../shared.module.scss";
 
 export default function PlaygroundPage() {
@@ -17,7 +17,7 @@ export default function PlaygroundPage() {
   useEffect(() => {
     apiFetch<ModelVersion[]>("/api/model-versions")
       .then((items) => setVersions(items))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   async function run(event: FormEvent) {
@@ -38,7 +38,7 @@ export default function PlaygroundPage() {
       setFineTunedAnswer(response.actual_answer);
       setBaseAnswer("Base 模型对比需要在 Deploy / Inference 中配置第二个推理后端后接入。");
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     } finally {
       setLoading(false);
     }

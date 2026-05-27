@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import os
 import shutil
 import subprocess
@@ -24,6 +25,7 @@ VALID_MODEL_FAMILIES = {"qwen", "rwkv"}
 VALID_TEMPLATES = {"qwen", "rwkv", "default"}
 VALID_FINETUNING_TYPES = {"lora", "qlora", "freeze", "full"}
 VALID_BUDGETS = {"low", "balanced", "high"}
+ACTIVE_JOB_STATUSES = {"starting", "running"}
 VENDOR_ROOT = APP_DIR / "vendor"
 RWKV_PEFT_ROOT = VENDOR_ROOT / "rwkv_peft"
 LLAMAFACTORY_ROOT = VENDOR_ROOT / "llamafactory"
@@ -60,10 +62,8 @@ def create_training_job(db: Session, payload: TrainingJobCreate) -> TrainingJob:
     db.add(job)
     db.flush()
     paths = generate_training_yaml(job, dataset)
-    job.config_path = paths["config_path"]
-    job.output_dir = paths["output_dir"]
-    job.log_path = paths["log_path"]
-    job.command = paths["command"]
+    for field in ("config_path", "output_dir", "log_path", "command"):
+        setattr(job, field, paths[field])
     db.commit()
     db.refresh(job)
     return job
@@ -73,18 +73,33 @@ def mark_job_running(db: Session, job_id: int) -> TrainingJob:
     job = db.get(TrainingJob, job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Training job not found.")
-    if job.status == "running":
+    if job.status in ACTIVE_JOB_STATUSES:
         raise HTTPException(status_code=400, detail="Training job is already running.")
     if job.status == "completed":
         raise HTTPException(status_code=400, detail="Training job is already completed.")
-    runner = _find_training_runner(job)
-    _run_preflight_checks(db, job, runner)
-    job.status = "running"
-    job.progress = 0
-    job.error_message = None
-    job.updated_at = datetime.utcnow()
+
+    updated = (
+        db.query(TrainingJob)
+        .filter(TrainingJob.id == job_id, TrainingJob.status.notin_([*ACTIVE_JOB_STATUSES, "completed"]))
+        .update(
+            {
+                "status": "starting",
+                "progress": 0,
+                "error_message": None,
+                "updated_at": datetime.utcnow(),
+            },
+            synchronize_session=False,
+        )
+    )
+    if updated != 1:
+        db.rollback()
+        raise HTTPException(status_code=409, detail="Training job was started by another request.")
     db.commit()
     db.refresh(job)
+
+    runner = _find_training_runner(job)
+    _run_preflight_checks(db, job, runner)
+    _update_job(db, job, refresh=True, status="running", progress=0, error_message=None)
     append_log(job.log_path, f"[{datetime.utcnow().isoformat()}] Job queued.")
     if runner:
         append_log(job.log_path, f"[preflight] Runner found: {runner['label']}")
@@ -107,10 +122,7 @@ def run_training_job(job_id: int) -> None:
     except Exception as exc:  # noqa: BLE001
         job = db.get(TrainingJob, job_id)
         if job:
-            job.status = "failed"
-            job.error_message = str(exc)
-            job.updated_at = datetime.utcnow()
-            db.commit()
+            _update_job(db, job, status="failed", error_message=str(exc))
             append_log(job.log_path, f"[ERROR] {exc}")
     finally:
         db.close()
@@ -118,11 +130,7 @@ def run_training_job(job_id: int) -> None:
 
 def _run_real_training(db: Session, job: TrainingJob, runner: dict[str, Any]) -> None:
     command = _build_training_command(job, runner)
-    job.command = " ".join(command)
-    job.status = "running"
-    job.progress = 1
-    job.updated_at = datetime.utcnow()
-    db.commit()
+    _update_job(db, job, command=" ".join(command), status="running", progress=1)
     append_log(job.log_path, f"[{datetime.utcnow().isoformat()}] Starting real training: {job.command}")
 
     with Path(job.log_path or "").open("a", encoding="utf-8") as log_handle:
@@ -135,27 +143,25 @@ def _run_real_training(db: Session, job: TrainingJob, runner: dict[str, Any]) ->
             text=True,
         )
         while process.poll() is None:
-            job.progress = min(95, job.progress + 1)
-            job.updated_at = datetime.utcnow()
-            db.commit()
+            _update_job(db, job, progress=min(95, job.progress + 1))
             time.sleep(5)
         return_code = process.returncode
 
     if return_code == 0:
         _complete_job(db, job)
     else:
-        job.status = "failed"
-        job.error_message = _explain_training_failure(job.log_path, f"{job.model_family} runner exited with code {return_code}")
-        job.updated_at = datetime.utcnow()
-        db.commit()
+        _update_job(
+            db,
+            job,
+            status="failed",
+            error_message=_explain_training_failure(job.log_path, f"{job.model_family} runner exited with code {return_code}"),
+        )
         append_log(job.log_path, f"[ERROR] {job.error_message}")
 
 
 def _run_mock_training(db: Session, job: TrainingJob) -> None:
-    if job.model_family == "rwkv":
-        append_log(job.log_path, "[mock] rwkv-finetune not found. Falling back to mock train.")
-    else:
-        append_log(job.log_path, "[mock] llamafactory-cli not found. Falling back to mock train.")
+    missing_runner = "rwkv-finetune" if job.model_family == "rwkv" else "llamafactory-cli"
+    append_log(job.log_path, f"[mock] {missing_runner} not found. Falling back to mock train.")
     steps = [
         (10, "loading dataset"),
         (25, "building trainer"),
@@ -166,10 +172,7 @@ def _run_mock_training(db: Session, job: TrainingJob) -> None:
     ]
     for progress, message in steps:
         append_log(job.log_path, f"[mock] {message}")
-        job.status = "running"
-        job.progress = progress
-        job.updated_at = datetime.utcnow()
-        db.commit()
+        _update_job(db, job, status="running", progress=progress)
         time.sleep(0.6)
 
     output_dir = Path(job.output_dir or "")
@@ -195,10 +198,7 @@ def _run_mock_training(db: Session, job: TrainingJob) -> None:
 
 
 def _complete_job(db: Session, job: TrainingJob) -> None:
-    job.status = "completed"
-    job.progress = 100
-    job.updated_at = datetime.utcnow()
-    db.commit()
+    _update_job(db, job, status="completed", progress=100)
     append_log(job.log_path, f"[{datetime.utcnow().isoformat()}] Training completed.")
     model_version = create_model_version_for_job(db, job)
     append_log(
@@ -212,7 +212,7 @@ def _find_training_runner(job: TrainingJob) -> dict[str, Any] | None:
         cli_path = shutil.which("rwkv-finetune")
         if cli_path:
             return {"label": cli_path, "kind": "rwkv_cli", "cli_path": cli_path}
-        if (RWKV_PEFT_ROOT / "train.py").exists():
+        if (RWKV_PEFT_ROOT / "train.py").exists() and _modules_available(["torch", "lightning", "deepspeed", "numpy"]):
             return {
                 "label": f"vendor RWKV-PEFT ({RWKV_PEFT_ROOT})",
                 "kind": "rwkv_peft_vendor",
@@ -225,7 +225,7 @@ def _find_training_runner(job: TrainingJob) -> dict[str, Any] | None:
     if cli_path:
         return {"label": cli_path, "kind": "llamafactory_cli", "cli_path": cli_path}
     src_path = LLAMAFACTORY_ROOT / "src"
-    if (src_path / "llamafactory").exists():
+    if (src_path / "llamafactory").exists() and _modules_available(["torch", "transformers", "datasets", "accelerate"]):
         return {
             "label": f"vendor LLaMA-Factory ({LLAMAFACTORY_ROOT})",
             "kind": "llamafactory_vendor",
@@ -290,14 +290,19 @@ def _run_preflight_checks(db: Session, job: TrainingJob, runner: dict[str, Any] 
         append_log(job.log_path, f"[preflight] {warning}")
 
     if errors:
-        job.status = "failed"
-        job.progress = 0
-        job.error_message = " ".join(errors)
-        job.updated_at = datetime.utcnow()
-        db.commit()
+        _update_job(db, job, status="failed", progress=0, error_message=" ".join(errors))
         for error in errors:
             append_log(job.log_path, f"[preflight][ERROR] {error}")
         raise HTTPException(status_code=400, detail=job.error_message)
+
+
+def _update_job(db: Session, job: TrainingJob, refresh: bool = False, **changes: Any) -> None:
+    for field, value in changes.items():
+        setattr(job, field, value)
+    job.updated_at = datetime.utcnow()
+    db.commit()
+    if refresh:
+        db.refresh(job)
 
 
 def _env_with_pythonpath(path: str) -> dict[str, str]:
@@ -307,10 +312,15 @@ def _env_with_pythonpath(path: str) -> dict[str, str]:
     return env
 
 
+def _modules_available(module_names: list[str]) -> bool:
+    return all(importlib.util.find_spec(module_name) is not None for module_name in module_names)
+
+
 def _runner_version(runner: dict[str, Any]) -> str | None:
     if runner["kind"] in {"rwkv_peft_vendor", "llamafactory_vendor"}:
         return runner["label"]
-    return _command_output([runner["cli_path"], "--version"])
+    output = _command_output([runner["cli_path"], "--version"])
+    return output.splitlines()[0][:300] if output else None
 
 
 def _build_rwkv_peft_command(job: TrainingJob) -> list[str]:
@@ -331,37 +341,25 @@ def _build_rwkv_peft_command(job: TrainingJob) -> list[str]:
         "response",
         "--sft_split",
         "train",
-        "--my_testing",
-        str(config.get("my_testing", "x070")),
-        "--ctx_len",
-        str(config.get("cutoff_len", 1024)),
-        "--epoch_count",
-        str(config.get("num_train_epochs", 1)),
-        "--epoch_steps",
-        str(config.get("epoch_steps", 100)),
-        "--epoch_save",
-        "1",
-        "--micro_bsz",
-        str(config.get("micro_bsz", 1)),
-        "--accumulate_grad_batches",
-        str(config.get("gradient_accumulation_steps", 1)),
-        "--lr_init",
-        str(config.get("learning_rate", 2e-4)),
-        "--lr_final",
-        str(config.get("lr_final", 1e-5)),
-        "--n_layer",
-        str(config.get("n_layer", 24)),
-        "--n_embd",
-        str(config.get("n_embd", 2048)),
-        "--op",
-        str(config.get("op", "cuda")),
-        "--strategy",
-        str(config.get("strategy", "deepspeed_stage_1")),
-        "--precision",
-        str(config.get("precision", "bf16")),
-        "--devices",
-        "1",
     ]
+    for flag, key, default in (
+        ("--my_testing", "my_testing", "x070"),
+        ("--ctx_len", "cutoff_len", 1024),
+        ("--epoch_count", "num_train_epochs", 1),
+        ("--epoch_steps", "epoch_steps", 100),
+        ("--epoch_save", "epoch_save", 1),
+        ("--micro_bsz", "micro_bsz", 1),
+        ("--accumulate_grad_batches", "gradient_accumulation_steps", 1),
+        ("--lr_init", "learning_rate", 2e-4),
+        ("--lr_final", "lr_final", 1e-5),
+        ("--n_layer", "n_layer", 24),
+        ("--n_embd", "n_embd", 2048),
+        ("--op", "op", "cuda"),
+        ("--strategy", "strategy", "deepspeed_stage_1"),
+        ("--precision", "precision", "bf16"),
+        ("--devices", "devices", 1),
+    ):
+        command.extend([flag, str(config.get(key, default))])
     if config.get("peft"):
         command.extend(["--peft", str(config["peft"])])
     if config.get("lora_config"):
@@ -393,26 +391,15 @@ def _command_output(command: list[str]) -> str | None:
         )
     except (OSError, subprocess.TimeoutExpired):
         return None
-    output = result.stdout.strip().splitlines()
-    return output[0][:300] if output else None
+    return result.stdout.strip()
 
 
 def _gpu_summary() -> str | None:
     nvidia_smi = shutil.which("nvidia-smi")
     if not nvidia_smi:
         return None
-    try:
-        result = subprocess.run(
-            [nvidia_smi, "--query-gpu=name,memory.total", "--format=csv,noheader,nounits"],
-            check=False,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            timeout=5,
-        )
-    except (OSError, subprocess.TimeoutExpired):
-        return None
-    lines = [line.strip() for line in result.stdout.splitlines() if line.strip()]
+    output = _command_output([nvidia_smi, "--query-gpu=name,memory.total", "--format=csv,noheader,nounits"])
+    lines = [line.strip() for line in (output or "").splitlines() if line.strip()]
     return "; ".join(lines) if lines else None
 
 

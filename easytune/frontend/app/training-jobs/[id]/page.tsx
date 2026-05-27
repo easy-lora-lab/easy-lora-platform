@@ -4,21 +4,15 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
-import { TrainingJob, apiFetch } from "../../../lib/api";
+import { TrainingJob, apiFetch, errorMessage } from "../../../lib/api";
 import styles from "../../shared.module.scss";
+import { statusClass } from "../../ui";
 
 type LogsResponse = {
   job_id: number;
   log_path: string | null;
   content: string;
 };
-
-function statusClass(status: string) {
-  if (status === "completed") return `${styles.status} ${styles.statusReady}`;
-  if (status === "running") return `${styles.status} ${styles.statusRunning}`;
-  if (status === "failed") return `${styles.status} ${styles.statusFailed}`;
-  return styles.status;
-}
 
 export default function TrainingJobDetailPage() {
   const params = useParams<{ id: string }>();
@@ -37,9 +31,9 @@ export default function TrainingJobDetailPage() {
   }, [jobId]);
 
   useEffect(() => {
-    load().catch((err: Error) => setError(err.message));
+    load().catch((err: unknown) => setError(errorMessage(err)));
     const timer = window.setInterval(() => {
-      load().catch((err: Error) => setError(err.message));
+      load().catch((err: unknown) => setError(errorMessage(err)));
     }, 2000);
     return () => window.clearInterval(timer);
   }, [load]);
@@ -50,7 +44,7 @@ export default function TrainingJobDetailPage() {
       await apiFetch<TrainingJob>(`/api/training-jobs/${jobId}/start`, { method: "POST" });
       await load();
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     }
   }
 

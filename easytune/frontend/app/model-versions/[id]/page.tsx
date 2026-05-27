@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { ModelVersion, apiFetch } from "../../../lib/api";
+import { ModelVersion, apiFetch, errorMessage } from "../../../lib/api";
 import styles from "../../shared.module.scss";
+import { formatDate } from "../../ui";
 
 export default function ModelVersionDetailPage() {
   const params = useParams<{ id: string }>();
@@ -15,7 +16,7 @@ export default function ModelVersionDetailPage() {
   useEffect(() => {
     apiFetch<ModelVersion>(`/api/model-versions/${Number(params.id)}`)
       .then((item) => setVersion(item))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, [params.id]);
 
   if (!version) {
@@ -57,7 +58,7 @@ export default function ModelVersionDetailPage() {
           <dt>状态</dt>
           <dd>{version.status}</dd>
           <dt>创建时间</dt>
-          <dd>{new Date(version.created_at).toLocaleString()}</dd>
+          <dd>{formatDate(version.created_at)}</dd>
         </dl>
       </section>
     </>

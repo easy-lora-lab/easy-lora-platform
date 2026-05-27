@@ -3,14 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { ModelVersion, apiFetch } from "../../lib/api";
+import { ModelVersion, apiFetch, errorMessage } from "../../lib/api";
 import styles from "../shared.module.scss";
-
-function statusClass(status: string) {
-  if (status === "ready") return `${styles.status} ${styles.statusReady}`;
-  if (status === "failed") return `${styles.status} ${styles.statusFailed}`;
-  return styles.status;
-}
+import { formatDate, statusClass } from "../ui";
 
 export default function ModelVersionsPage() {
   const [versions, setVersions] = useState<ModelVersion[]>([]);
@@ -19,7 +14,7 @@ export default function ModelVersionsPage() {
   useEffect(() => {
     apiFetch<ModelVersion[]>("/api/model-versions")
       .then((items) => setVersions(items))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   return (
@@ -63,7 +58,7 @@ export default function ModelVersionsPage() {
                 <td>
                   <span className={statusClass(version.status)}>{version.status}</span>
                 </td>
-                <td>{new Date(version.created_at).toLocaleString()}</td>
+                <td>{formatDate(version.created_at)}</td>
               </tr>
             ))}
           </tbody>

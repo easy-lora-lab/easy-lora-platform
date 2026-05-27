@@ -79,10 +79,7 @@ def _call_qwen_transformers(
         _QWEN_CACHE[cache_key] = (tokenizer, model)
 
     tokenizer, model = _QWEN_CACHE[cache_key]
-    messages = []
-    if payload.system_prompt:
-        messages.append({"role": "system", "content": payload.system_prompt})
-    messages.append({"role": "user", "content": payload.prompt})
+    messages = _chat_messages(payload)
     if hasattr(tokenizer, "apply_chat_template"):
         text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     else:
@@ -112,13 +109,9 @@ def _call_rwkv_lightning(
 ) -> ValidationGenerateResponse:
     base_url = os.getenv("EASYTUNE_INFERENCE_BASE_URL", "http://127.0.0.1:8001").rstrip("/")
     model = _served_model_name(model_version, default="rwkv7")
-    messages = []
-    if payload.system_prompt:
-        messages.append({"role": "system", "content": payload.system_prompt})
-    messages.append({"role": "user", "content": payload.prompt})
     body = {
         "model": model,
-        "messages": messages,
+        "messages": _chat_messages(payload),
         "temperature": payload.temperature,
         "max_tokens": payload.max_tokens,
         "stream": False,
@@ -154,13 +147,9 @@ def _call_openai_compatible(
     if not base_url:
         raise HTTPException(status_code=400, detail="EASYTUNE_INFERENCE_BASE_URL is required for OpenAI-compatible inference.")
     model = _served_model_name(model_version)
-    messages = []
-    if payload.system_prompt:
-        messages.append({"role": "system", "content": payload.system_prompt})
-    messages.append({"role": "user", "content": payload.prompt})
     body = {
         "model": model,
-        "messages": messages,
+        "messages": _chat_messages(payload),
         "temperature": payload.temperature,
         "max_tokens": payload.max_tokens,
     }
@@ -212,6 +201,14 @@ def _call_ollama(model_version: ModelVersion, payload: ValidationGenerateRequest
 
 def _served_model_name(model_version: ModelVersion, default: str | None = None) -> str:
     return os.getenv("EASYTUNE_INFERENCE_MODEL") or default or model_version.name or model_version.base_model
+
+
+def _chat_messages(payload: ValidationGenerateRequest) -> list[dict[str, str]]:
+    messages = []
+    if payload.system_prompt:
+        messages.append({"role": "system", "content": payload.system_prompt})
+    messages.append({"role": "user", "content": payload.prompt})
+    return messages
 
 
 def _extract_openai_content(response: dict[str, Any]) -> str:

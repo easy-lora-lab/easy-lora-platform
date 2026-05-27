@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, File, Form, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -39,8 +39,6 @@ def list_datasets(db: Session = Depends(get_db)) -> list[Dataset]:
 def get_dataset(dataset_id: int, db: Session = Depends(get_db)) -> Dataset:
     dataset = db.get(Dataset, dataset_id)
     if not dataset:
-        from fastapi import HTTPException
-
         raise HTTPException(status_code=404, detail="Dataset not found.")
     return dataset
 
@@ -66,8 +64,6 @@ def split(dataset_id: int, payload: DatasetSplitRequest, db: Session = Depends(g
 def get_dataset_info(dataset_id: int, db: Session = Depends(get_db)) -> DatasetInfoResponse:
     dataset = db.get(Dataset, dataset_id)
     if not dataset:
-        from fastapi import HTTPException
-
         raise HTTPException(status_code=404, detail="Dataset not found.")
     return DatasetInfoResponse(
         dataset_id=dataset.id,

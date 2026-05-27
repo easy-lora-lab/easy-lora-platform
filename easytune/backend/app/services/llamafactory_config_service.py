@@ -53,38 +53,19 @@ def generate_training_yaml(job: TrainingJob, dataset: Dataset) -> dict[str, str]
         raise HTTPException(status_code=400, detail="budget_level must be low, balanced or high.")
 
     preset = BUDGET_PRESETS[job.budget_level]
-    output_dir = (STORAGE_ROOT / "outputs" / f"job_{job.id}").resolve()
-    log_path = (STORAGE_ROOT / "logs" / f"job_{job.id}.log").resolve()
-    config_path = (STORAGE_ROOT / "configs" / f"job_{job.id}.yaml").resolve()
-    output_dir.mkdir(parents=True, exist_ok=True)
+    config_path, output_dir, log_path = _training_paths(job.id)
 
     if job.model_family == "rwkv":
         rwkv_dataset_path = _write_rwkv_peft_sft_dataset(dataset)
         config = {
             "model_family": "rwkv",
+            **_base_training_config(job, dataset, preset, output_dir),
             "runner": "rwkv_finetune",
-            "model_name_or_path": job.base_model,
-            "stage": job.stage,
-            "do_train": True,
-            "finetuning_type": job.finetuning_type,
             "template": "rwkv",
-            "dataset": dataset_name(dataset.id),
             "dataset_path": str(rwkv_dataset_path.resolve()),
-            "dataset_dir": str((STORAGE_ROOT / "llamafactory_data").resolve()),
-            "cutoff_len": preset["cutoff_len"],
-            "learning_rate": preset["learning_rate"],
             "lr_final": float(os.getenv("EASYTUNE_RWKV_LR_FINAL", "1e-5")),
-            "num_train_epochs": preset["num_train_epochs"],
             "epoch_steps": int(os.getenv("EASYTUNE_RWKV_EPOCH_STEPS", "100")),
             "micro_bsz": preset["per_device_train_batch_size"],
-            "gradient_accumulation_steps": preset["gradient_accumulation_steps"],
-            "lr_scheduler_type": "cosine",
-            "logging_steps": 10,
-            "save_steps": preset["save_steps"],
-            "output_dir": str(output_dir),
-            "overwrite_output_dir": True,
-            "plot_loss": True,
-            "bf16": _has_nvidia_gpu(),
             "my_testing": os.getenv("EASYTUNE_RWKV_MY_TESTING", "x070"),
             "n_layer": int(os.getenv("EASYTUNE_RWKV_N_LAYER", "24")),
             "n_embd": int(os.getenv("EASYTUNE_RWKV_N_EMBD", "2048")),
@@ -102,36 +83,13 @@ def generate_training_yaml(job: TrainingJob, dataset: Dataset) -> dict[str, str]
             }
         if job.finetuning_type == "qlora":
             config["quant"] = os.getenv("EASYTUNE_RWKV_QUANT", "nf4")
-        config_path.write_text(yaml.safe_dump(config, allow_unicode=True, sort_keys=False), encoding="utf-8")
-        log_path.touch(exist_ok=True)
-        return {
-            "config_path": str(config_path),
-            "output_dir": str(output_dir),
-            "log_path": str(log_path),
-            "command": f"rwkv-finetune train {config_path}",
-        }
+        return _write_config_response(config, config_path, output_dir, log_path, f"rwkv-finetune train {config_path}")
 
     config = {
         "model_family": "qwen",
-        "model_name_or_path": job.base_model,
-        "stage": job.stage,
-        "do_train": True,
-        "finetuning_type": job.finetuning_type,
+        **_base_training_config(job, dataset, preset, output_dir),
         "template": job.template,
-        "dataset": dataset_name(dataset.id),
-        "dataset_dir": str((STORAGE_ROOT / "llamafactory_data").resolve()),
-        "cutoff_len": preset["cutoff_len"],
-        "learning_rate": preset["learning_rate"],
-        "num_train_epochs": preset["num_train_epochs"],
         "per_device_train_batch_size": preset["per_device_train_batch_size"],
-        "gradient_accumulation_steps": preset["gradient_accumulation_steps"],
-        "lr_scheduler_type": "cosine",
-        "logging_steps": 10,
-        "save_steps": preset["save_steps"],
-        "output_dir": str(output_dir),
-        "overwrite_output_dir": True,
-        "plot_loss": True,
-        "bf16": _has_nvidia_gpu(),
         "gradient_checkpointing": True,
         "warmup_ratio": 0.03,
         "weight_decay": 0.01,
@@ -146,31 +104,73 @@ def generate_training_yaml(job: TrainingJob, dataset: Dataset) -> dict[str, str]
         config["quantization_bit"] = 4
         config["quantization_method"] = "bitsandbytes"
 
+    return _write_config_response(config, config_path, output_dir, log_path, f"llamafactory-cli train {config_path}")
+
+
+def _training_paths(job_id: int) -> tuple[Path, Path, Path]:
+    output_dir = (STORAGE_ROOT / "outputs" / f"job_{job_id}").resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return (
+        (STORAGE_ROOT / "configs" / f"job_{job_id}.yaml").resolve(),
+        output_dir,
+        (STORAGE_ROOT / "logs" / f"job_{job_id}.log").resolve(),
+    )
+
+
+def _base_training_config(job: TrainingJob, dataset: Dataset, preset: dict, output_dir: Path) -> dict:
+    return {
+        "model_name_or_path": job.base_model,
+        "stage": job.stage,
+        "do_train": True,
+        "finetuning_type": job.finetuning_type,
+        "dataset": dataset_name(dataset.id),
+        "dataset_dir": str((STORAGE_ROOT / "llamafactory_data").resolve()),
+        "cutoff_len": preset["cutoff_len"],
+        "learning_rate": preset["learning_rate"],
+        "num_train_epochs": preset["num_train_epochs"],
+        "gradient_accumulation_steps": preset["gradient_accumulation_steps"],
+        "lr_scheduler_type": "cosine",
+        "logging_steps": 10,
+        "save_steps": preset["save_steps"],
+        "output_dir": str(output_dir),
+        "overwrite_output_dir": True,
+        "plot_loss": True,
+        "bf16": _has_nvidia_gpu(),
+    }
+
+
+def _write_config_response(
+    config: dict,
+    config_path: Path,
+    output_dir: Path,
+    log_path: Path,
+    command: str,
+) -> dict[str, str]:
     config_path.write_text(yaml.safe_dump(config, allow_unicode=True, sort_keys=False), encoding="utf-8")
     log_path.touch(exist_ok=True)
     return {
         "config_path": str(config_path),
         "output_dir": str(output_dir),
         "log_path": str(log_path),
-        "command": f"llamafactory-cli train {config_path}",
+        "command": command,
     }
 
 
 def _write_rwkv_peft_sft_dataset(dataset: Dataset) -> Path:
     source_path = Path(dataset.converted_file_path or "")
     target_path = STORAGE_ROOT / "llamafactory_data" / f"{dataset_name(dataset.id)}_rwkv_sft.jsonl"
-    rows = []
-    for line in source_path.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        record = json.loads(line)
-        query, response = _record_to_query_response(record)
-        if query and response:
-            rows.append({"query": query, "response": response})
-
+    written = 0
     with target_path.open("w", encoding="utf-8") as handle:
-        for row in rows:
-            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+        for line in source_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            query, response = _record_to_query_response(json.loads(line))
+            if query and response:
+                handle.write(json.dumps({"query": query, "response": response}, ensure_ascii=False) + "\n")
+                written += 1
+    if written == 0:
+        target_path.unlink(missing_ok=True)
+        raise HTTPException(status_code=400, detail="Converted dataset has no usable RWKV SFT query/response pairs.")
     return target_path
 
 

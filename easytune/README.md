@@ -64,6 +64,15 @@ pip install -r requirements-ml.txt
 curl http://localhost:8000/api/health
 ```
 
+可选安全配置：
+
+```bash
+export EASYTUNE_CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+export EASYTUNE_API_TOKEN=change-this-token
+```
+
+设置 `EASYTUNE_API_TOKEN` 后，上传数据、创建/启动训练、保存验收记录等写接口需要 `Authorization: Bearer <token>`。前端可以在「Deploy / Inference」页面保存该 token。
+
 可选推理验收环境变量：
 
 ```bash

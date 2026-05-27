@@ -3,14 +3,9 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 
-import { Dataset, apiFetch, uploadDataset } from "../../lib/api";
+import { Dataset, apiFetch, errorMessage, uploadDataset } from "../../lib/api";
 import styles from "../shared.module.scss";
-
-function statusClass(status: string) {
-  if (status === "converted") return `${styles.status} ${styles.statusReady}`;
-  if (status === "failed") return `${styles.status} ${styles.statusFailed}`;
-  return styles.status;
-}
+import { statusClass } from "../ui";
 
 export default function DatasetsPage() {
   const [datasets, setDatasets] = useState<Dataset[]>([]);
@@ -25,7 +20,7 @@ export default function DatasetsPage() {
   }
 
   useEffect(() => {
-    loadDatasets().catch((err: Error) => setError(err.message));
+    loadDatasets().catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   async function handleUpload(event: FormEvent) {
@@ -44,7 +39,7 @@ export default function DatasetsPage() {
       setFile(null);
       await loadDatasets();
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -59,7 +54,7 @@ export default function DatasetsPage() {
       setNotice(`数据集 ${datasetId} 已转换。`);
       await loadDatasets();
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     } finally {
       setLoading(false);
     }

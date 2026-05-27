@@ -7,6 +7,7 @@ services:
     environment:
       DATABASE_URL: sqlite:////app/data/easytune.db
       EASYTUNE_STORAGE_ROOT: /app/app/storage
+      EASYTUNE_CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
     volumes:
       - ./backend/app/storage:/app/app/storage
       - ./backend/data:/app/data

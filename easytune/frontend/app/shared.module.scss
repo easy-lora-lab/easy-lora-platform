@@ -205,71 +205,12 @@
   line-height: 1.35;
 }
 
-.workflow {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.workflowStep {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 54px;
-  padding: 10px 12px;
-  border: 1px solid #d7dde6;
-  border-radius: 8px;
-  background: #ffffff;
-}
-
-.workflowStep span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  background: #e8f4ef;
-  color: #1f7a5c;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.workflowStep strong {
-  font-size: 14px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 14px;
-}
-
-.card,
 .panel {
   border: 1px solid #d7dde6;
   border-radius: 8px;
   background: #ffffff;
 }
 
-.card {
-  min-height: 142px;
-  padding: 18px;
-  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.045);
-  transition:
-    border-color 160ms ease,
-    transform 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.card:hover {
-  border-color: #96b8ab;
-  transform: translateY(-2px);
-  box-shadow: 0 18px 34px rgba(17, 24, 39, 0.08);
-}
-
-.card h2,
 .panel h2 {
   margin: 0 0 8px;
   color: #172033;
@@ -277,7 +218,6 @@
   letter-spacing: 0;
 }
 
-.card p,
 .muted {
   color: #667085;
   line-height: 1.65;
@@ -411,30 +351,6 @@
   background: #1f7a5c;
 }
 
-.chartCard {
-  display: grid;
-  gap: 12px;
-  min-height: 260px;
-}
-
-.lossChart {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  height: 150px;
-  padding: 12px;
-  border: 1px solid #dfe6ef;
-  border-radius: 8px;
-  background: #f8fafc;
-}
-
-.lossChart span {
-  flex: 1;
-  min-width: 10px;
-  border-radius: 6px 6px 0 0;
-  background: #2f6f9f;
-}
-
 .compareGrid,
 .deployGrid {
   display: grid;
@@ -518,8 +434,7 @@
 }
 
 .button,
-.secondaryButton,
-.dangerButton {
+.secondaryButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -535,8 +450,7 @@
 }
 
 .button:hover,
-.secondaryButton:hover,
-.dangerButton:hover {
+.secondaryButton:hover {
   transform: translateY(-1px);
 }
 
@@ -560,14 +474,8 @@
   background: #f8fafc;
 }
 
-.dangerButton {
-  background: #b42318;
-  color: #ffffff;
-}
-
 .button:disabled,
-.secondaryButton:disabled,
-.dangerButton:disabled {
+.secondaryButton:disabled {
   cursor: not-allowed;
   opacity: 0.55;
   transform: none;
@@ -731,7 +639,6 @@
   }
 
   .heroStats,
-  .workflow,
   .metricGrid,
   .sectionGrid,
   .compareGrid,
@@ -750,7 +657,6 @@
 
 @media (max-width: 640px) {
   .heroStats,
-  .workflow,
   .metricGrid,
   .sectionGrid,
   .compareGrid,

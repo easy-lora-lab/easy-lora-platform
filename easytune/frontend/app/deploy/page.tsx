@@ -2,36 +2,29 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
-import { apiFetch, getApiBaseUrl, setApiBaseUrl } from "../../lib/api";
+import { Health, apiFetch, errorMessage, getApiBaseUrl, getApiToken, setApiBaseUrl, setApiToken } from "../../lib/api";
 import styles from "../shared.module.scss";
-
-type Health = {
-  status: string;
-  storage_root: string;
-  llamafactory_cli_available: boolean;
-  rwkv_finetune_available: boolean;
-  inference_provider: string;
-  inference_base_url: string | null;
-  gpus: unknown[];
-};
 
 export default function DeployPage() {
   const [apiBase, setApiBase] = useState("");
+  const [apiToken, setApiTokenValue] = useState("");
   const [health, setHealth] = useState<Health | null>(null);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
     setApiBase(getApiBaseUrl());
+    setApiTokenValue(getApiToken());
     apiFetch<Health>("/api/health")
       .then((item) => setHealth(item))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   function saveApiBase(event: FormEvent) {
     event.preventDefault();
     setApiBaseUrl(apiBase);
-    setNotice("前端 API 地址已保存到当前浏览器。");
+    setApiToken(apiToken);
+    setNotice("前端 API 地址和访问令牌已保存到当前浏览器。");
   }
 
   return (
@@ -54,6 +47,16 @@ export default function DeployPage() {
             <div className={styles.field}>
               <label htmlFor="apiBase">Backend API Base URL</label>
               <input id="apiBase" value={apiBase} onChange={(event) => setApiBase(event.target.value)} />
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="apiToken">API Token</label>
+              <input
+                id="apiToken"
+                type="password"
+                value={apiToken}
+                onChange={(event) => setApiTokenValue(event.target.value)}
+                placeholder="后端设置 EASYTUNE_API_TOKEN 时填写"
+              />
             </div>
             <button className={styles.button} type="submit">
               保存
@@ -84,6 +87,14 @@ export default function DeployPage() {
               <span>inference</span>
               <strong>{health?.inference_provider || "disabled"}</strong>
             </div>
+            <div>
+              <span>api token</span>
+              <strong>{health?.api_token_required ? "required" : "not required"}</strong>
+            </div>
+            <div>
+              <span>cors</span>
+              <strong>{health?.cors_origins || "-"}</strong>
+            </div>
           </div>
         </div>
       </section>
@@ -94,6 +105,8 @@ export default function DeployPage() {
 source .venv/bin/activate
 export EASYTUNE_INFERENCE_PROVIDER=rwkv_lightning
 export EASYTUNE_INFERENCE_BASE_URL=http://127.0.0.1:8001
+export EASYTUNE_API_TOKEN=change-this-token
+export EASYTUNE_CORS_ORIGINS=http://localhost:3000
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 # RWKV Lightning 内置推理服务

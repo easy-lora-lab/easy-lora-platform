@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models import ValidationRecord
+from app.models import ModelVersion, ValidationRecord
 from app.schemas import (
     ValidationGenerateRequest,
     ValidationGenerateResponse,
@@ -10,14 +10,19 @@ from app.schemas import (
     ValidationRecordRead,
 )
 from app.services.inference_service import generate_validation_answer
-from app.services.validation_service import create_validation_record
 
 router = APIRouter(prefix="/api/validation-records", tags=["validation-records"])
 
 
 @router.post("", response_model=ValidationRecordRead)
 def create_record(payload: ValidationRecordCreate, db: Session = Depends(get_db)) -> ValidationRecord:
-    return create_validation_record(db, payload)
+    if not db.get(ModelVersion, payload.model_version_id):
+        raise HTTPException(status_code=404, detail="Model version not found.")
+    record = ValidationRecord(**payload.model_dump())
+    db.add(record)
+    db.commit()
+    db.refresh(record)
+    return record
 
 
 @router.post("/generate", response_model=ValidationGenerateResponse)

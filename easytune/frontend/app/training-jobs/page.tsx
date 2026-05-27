@@ -3,15 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { TrainingJob, apiFetch } from "../../lib/api";
+import { TrainingJob, apiFetch, errorMessage } from "../../lib/api";
 import styles from "../shared.module.scss";
-
-function statusClass(status: string) {
-  if (status === "completed") return `${styles.status} ${styles.statusReady}`;
-  if (status === "running") return `${styles.status} ${styles.statusRunning}`;
-  if (status === "failed") return `${styles.status} ${styles.statusFailed}`;
-  return styles.status;
-}
+import { statusClass } from "../ui";
 
 export default function TrainingJobsPage() {
   const [jobs, setJobs] = useState<TrainingJob[]>([]);
@@ -23,7 +17,7 @@ export default function TrainingJobsPage() {
   }
 
   useEffect(() => {
-    load().catch((err: Error) => setError(err.message));
+    load().catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   async function start(jobId: number) {
@@ -34,7 +28,7 @@ export default function TrainingJobsPage() {
       setNotice(`任务 ${jobId} 已启动。`);
       await load();
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     }
   }
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
-import { Dataset, apiFetch } from "../../../lib/api";
+import { Dataset, apiFetch, errorMessage } from "../../../lib/api";
 import styles from "../../shared.module.scss";
 
 type DatasetInfoResponse = {
@@ -51,7 +51,7 @@ export default function DatasetDetailPage() {
   }, [datasetId]);
 
   useEffect(() => {
-    load().catch((err: Error) => setError(err.message));
+    load().catch((err: unknown) => setError(errorMessage(err)));
   }, [load]);
 
   async function convert() {
@@ -62,7 +62,7 @@ export default function DatasetDetailPage() {
       setNotice("转换完成。");
       await load();
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     }
   }
 
@@ -82,7 +82,7 @@ export default function DatasetDetailPage() {
       setNotice("train/valid 切分完成。");
       await load();
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     }
   }
 

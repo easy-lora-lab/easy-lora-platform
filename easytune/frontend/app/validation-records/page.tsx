@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-import { ValidationRecord, apiFetch } from "../../lib/api";
+import { ValidationRecord, apiFetch, errorMessage } from "../../lib/api";
 import styles from "../shared.module.scss";
+import { formatDate } from "../ui";
 
 export default function ValidationRecordsPage() {
   const [records, setRecords] = useState<ValidationRecord[]>([]);
@@ -12,7 +13,7 @@ export default function ValidationRecordsPage() {
   useEffect(() => {
     apiFetch<ValidationRecord[]>("/api/validation-records")
       .then((items) => setRecords(items))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   return (
@@ -50,7 +51,7 @@ export default function ValidationRecordsPage() {
                 <td>{record.actual_answer}</td>
                 <td>{record.human_score}</td>
                 <td>{record.human_note || "-"}</td>
-                <td>{new Date(record.created_at).toLocaleString()}</td>
+                <td>{formatDate(record.created_at)}</td>
               </tr>
             ))}
           </tbody>

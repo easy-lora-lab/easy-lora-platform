@@ -6,6 +6,7 @@ from datetime import datetime
 from io import StringIO
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 from fastapi import HTTPException, UploadFile
 from sqlalchemy.orm import Session
@@ -33,8 +34,8 @@ async def create_dataset_from_upload(db: Session, upload: UploadFile, name: str 
 
     content = await upload.read()
     safe_name = _safe_filename(upload.filename or f"dataset.{suffix}")
-    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
-    target_path = STORAGE_ROOT / "datasets" / f"{timestamp}_{safe_name}"
+    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S%f")
+    target_path = STORAGE_ROOT / "datasets" / f"{timestamp}_{uuid4().hex[:8]}_{safe_name}"
     target_path.write_bytes(content)
 
     report = analyze_file(target_path, suffix)
@@ -100,6 +101,7 @@ def analyze_file(path: Path, file_type: str) -> dict[str, Any]:
         "alpaca_like_count": format_stats["alpaca_like_count"],
         "sharegpt_like_count": format_stats["sharegpt_like_count"],
         "openai_messages_like_count": format_stats["openai_messages_like_count"],
+        "unknown_format_count": format_stats["unknown_format_count"],
         "errors": errors,
         "warnings": warnings,
         "quality_score": quality_score,
@@ -144,30 +146,82 @@ def _format_stats(records: list[dict[str, Any]]) -> dict[str, int]:
     alpaca = 0
     sharegpt = 0
     openai_messages = 0
+    unknown = 0
     for record in records:
-        if "instruction" in record and "output" in record:
+        kind = _record_kind(record)
+        if kind == "alpaca":
             alpaca += 1
-        conversations = record.get("conversations")
-        if isinstance(conversations, list) and conversations:
+        elif kind == "sharegpt_conversations":
             sharegpt += 1
-        messages = record.get("messages")
-        if isinstance(messages, list) and messages:
+        elif kind == "sharegpt_messages":
             openai_messages += 1
+        else:
+            unknown += 1
     return {
         "alpaca_like_count": alpaca,
         "sharegpt_like_count": sharegpt,
         "openai_messages_like_count": openai_messages,
+        "unknown_format_count": unknown,
     }
 
 
 def _detect_format(stats: dict[str, int], sample_count: int) -> str:
     if sample_count == 0:
         return "unknown"
-    threshold = max(1, sample_count // 2)
-    if stats["alpaca_like_count"] >= threshold:
+    if stats["alpaca_like_count"] == sample_count:
         return "alpaca"
-    if stats["sharegpt_like_count"] >= threshold or stats["openai_messages_like_count"] >= threshold:
+    sharegpt_count = stats["sharegpt_like_count"] + stats["openai_messages_like_count"]
+    if sharegpt_count == sample_count:
         return "sharegpt"
+    return "unknown"
+
+
+def _text(value: Any) -> str:
+    return "" if value is None else str(value).strip()
+
+
+def _message_role_content(message: dict[str, Any]) -> tuple[str, str]:
+    role = _text(message.get("role") or message.get("from")).lower()
+    content = _text(message.get("content") if "content" in message else message.get("value"))
+    return role, content
+
+
+def _role_to_openai(role: str) -> str:
+    role_map = {
+        "human": "user",
+        "user": "user",
+        "gpt": "assistant",
+        "assistant": "assistant",
+        "system": "system",
+        "tool": "tool",
+    }
+    return role_map.get(role, role)
+
+
+def _has_user_and_assistant(messages: list[Any]) -> bool:
+    has_user = False
+    has_assistant = False
+    for message in messages:
+        if not isinstance(message, dict):
+            continue
+        role, content = _message_role_content(message)
+        if not content:
+            continue
+        normalized_role = _role_to_openai(role)
+        has_user = has_user or normalized_role == "user"
+        has_assistant = has_assistant or normalized_role == "assistant"
+    return has_user and has_assistant
+
+
+def _record_kind(record: dict[str, Any]) -> str:
+    if _text(record.get("instruction")) and _text(record.get("output")):
+        return "alpaca"
+    conversations = record.get("conversations")
+    if isinstance(conversations, list) and _has_user_and_assistant(conversations):
+        return "sharegpt_conversations"
+    messages = record.get("messages")
+    if isinstance(messages, list) and _has_user_and_assistant(messages):
+        return "sharegpt_messages"
     return "unknown"
 
 
@@ -225,6 +279,7 @@ def convert_dataset(db: Session, dataset_id: int) -> Dataset:
     records = load_dataset_records(dataset)
     if not records:
         raise HTTPException(status_code=400, detail="Dataset has no valid records.")
+    _ensure_convertible_records(dataset.formatting, records)
 
     normalized, info_entry = _normalize_for_llamafactory(dataset.id, dataset.formatting, records)
     target_file = STORAGE_ROOT / "llamafactory_data" / f"{dataset_name(dataset.id)}.jsonl"
@@ -315,9 +370,9 @@ def _normalize_for_llamafactory(
         has_history = False
         for record in records:
             item = {
-                "instruction": str(record.get("instruction", "")),
-                "input": str(record.get("input", "")),
-                "output": str(record.get("output", "")),
+                "instruction": _text(record.get("instruction")),
+                "input": _text(record.get("input")),
+                "output": _text(record.get("output")),
             }
             if record.get("system"):
                 item["system"] = record["system"]
@@ -338,33 +393,28 @@ def _normalize_for_llamafactory(
             columns["history"] = "history"
         return normalized, {"file_name": output_name, "formatting": "alpaca", "columns": columns}
 
-    first = records[0]
-    if isinstance(first.get("conversations"), list):
-        normalized = []
-        has_system = False
-        has_tools = False
-        for record in records:
-            item = {"conversations": record.get("conversations", [])}
-            if record.get("system"):
-                item["system"] = record["system"]
-                has_system = True
-            if record.get("tools"):
-                item["tools"] = record["tools"]
-                has_tools = True
-            normalized.append(item)
+    normalized = []
+    has_system = False
+    has_tools = False
+    for record in records:
+        item = {"messages": _normalize_sharegpt_messages(record)}
+        if record.get("system"):
+            item["system"] = record["system"]
+            has_system = True
+        if record.get("tools"):
+            item["tools"] = record["tools"]
+            has_tools = True
+        normalized.append(item)
 
-        columns = {"messages": "conversations"}
-        if has_system:
-            columns["system"] = "system"
-        if has_tools:
-            columns["tools"] = "tools"
-        return normalized, {"file_name": output_name, "formatting": "sharegpt", "columns": columns}
-
-    normalized = [{"messages": record.get("messages", [])} for record in records]
+    columns = {"messages": "messages"}
+    if has_system:
+        columns["system"] = "system"
+    if has_tools:
+        columns["tools"] = "tools"
     return normalized, {
         "file_name": output_name,
         "formatting": "sharegpt",
-        "columns": {"messages": "messages"},
+        "columns": columns,
         "tags": {
             "role_tag": "role",
             "content_tag": "content",
@@ -373,3 +423,39 @@ def _normalize_for_llamafactory(
             "system_tag": "system",
         },
     }
+
+
+def _ensure_convertible_records(formatting: str, records: list[dict[str, Any]]) -> None:
+    invalid_rows: list[int] = []
+    for index, record in enumerate(records, start=1):
+        kind = _record_kind(record)
+        if formatting == "alpaca" and kind != "alpaca":
+            invalid_rows.append(index)
+        elif formatting == "sharegpt" and kind not in {"sharegpt_conversations", "sharegpt_messages"}:
+            invalid_rows.append(index)
+
+    if invalid_rows:
+        preview = ", ".join(str(row) for row in invalid_rows[:10])
+        suffix = "..." if len(invalid_rows) > 10 else ""
+        raise HTTPException(
+            status_code=400,
+            detail=f"Dataset contains {len(invalid_rows)} records that do not match {formatting}: rows {preview}{suffix}.",
+        )
+
+
+def _normalize_sharegpt_messages(record: dict[str, Any]) -> list[dict[str, str]]:
+    source = record.get("messages")
+    if not isinstance(source, list):
+        source = record.get("conversations")
+    if not isinstance(source, list):
+        return []
+
+    messages = []
+    for message in source:
+        if not isinstance(message, dict):
+            continue
+        role, content = _message_role_content(message)
+        normalized_role = _role_to_openai(role)
+        if normalized_role in {"system", "user", "assistant", "tool"} and content:
+            messages.append({"role": normalized_role, "content": content})
+    return messages

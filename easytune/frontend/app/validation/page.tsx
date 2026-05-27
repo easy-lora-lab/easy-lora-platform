@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
-import { ModelVersion, ValidationGenerateResponse, ValidationRecord, apiFetch } from "../../lib/api";
+import { ModelVersion, ValidationGenerateResponse, ValidationRecord, apiFetch, errorMessage } from "../../lib/api";
 import styles from "../shared.module.scss";
 
 export default function ValidationPage() {
@@ -20,7 +20,7 @@ export default function ValidationPage() {
   useEffect(() => {
     apiFetch<ModelVersion[]>("/api/model-versions")
       .then((items) => setVersions(items))
-      .catch((err: Error) => setError(err.message));
+      .catch((err: unknown) => setError(errorMessage(err)));
   }, []);
 
   async function submit(event: FormEvent) {
@@ -45,7 +45,7 @@ export default function ValidationPage() {
       setActualAnswer("");
       setHumanNote("");
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     }
   }
 
@@ -70,7 +70,7 @@ export default function ValidationPage() {
       setActualAnswer(response.actual_answer);
       setNotice(`已通过 ${response.provider} / ${response.model} 生成实际答案。`);
     } catch (err) {
-      setError((err as Error).message);
+      setError(errorMessage(err));
     } finally {
       setGenerating(false);
     }
@@ -81,7 +81,7 @@ export default function ValidationPage() {
       <div className={styles.titleRow}>
         <div>
           <h1>人工验收</h1>
-          <p>第一版不做真实推理，只保存人工填写的验收记录。</p>
+          <p>可手工填写实际答案，也可调用已配置的后端推理服务生成答案并保存验收记录。</p>
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 const DEFAULT_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000";
 const API_BASE_STORAGE_KEY = "easytune_api_base_url";
+const API_TOKEN_STORAGE_KEY = "easytune_api_token";
 
 export type Dataset = {
   id: number;
@@ -68,11 +69,41 @@ export type ValidationGenerateResponse = {
   raw_response: Record<string, unknown> | null;
 };
 
+export type Health = {
+  status: string;
+  storage_root: string;
+  llamafactory_cli_available: boolean;
+  rwkv_finetune_available: boolean;
+  inference_provider: string;
+  inference_base_url: string | null;
+  api_token_required?: boolean;
+  cors_origins?: string;
+  gpus: Array<{
+    name: string;
+    memory_used_mb: string;
+    memory_total_mb: string;
+    utilization_percent: string;
+  }>;
+  vendor?: Record<string, boolean>;
+};
+
+export function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
+  const headers = new Headers(init?.headers);
+  if (!(init?.body instanceof FormData) && !headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json");
+  }
+  const apiToken = getApiToken();
+  if (apiToken && !headers.has("Authorization")) {
+    headers.set("Authorization", `Bearer ${apiToken}`);
+  }
   const response = await fetch(`${getApiBaseUrl()}${path}`, {
     ...init,
     cache: "no-store",
-    headers: init?.body instanceof FormData ? init.headers : { "Content-Type": "application/json", ...init?.headers }
+    headers
   });
   if (!response.ok) {
     let message = response.statusText;
@@ -111,6 +142,25 @@ export function setApiBaseUrl(value: string): void {
     return;
   }
   window.localStorage.setItem(API_BASE_STORAGE_KEY, value.replace(/\/$/, ""));
+}
+
+export function getApiToken(): string {
+  if (typeof window === "undefined") {
+    return "";
+  }
+  return window.localStorage.getItem(API_TOKEN_STORAGE_KEY) || "";
+}
+
+export function setApiToken(value: string): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+  const trimmedValue = value.trim();
+  if (trimmedValue) {
+    window.localStorage.setItem(API_TOKEN_STORAGE_KEY, trimmedValue);
+  } else {
+    window.localStorage.removeItem(API_TOKEN_STORAGE_KEY);
+  }
 }
 
 export { DEFAULT_API_BASE_URL };
