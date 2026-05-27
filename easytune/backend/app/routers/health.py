@@ -61,5 +61,6 @@ def health() -> dict[str, object]:
             "rwkv_lightning": (APP_DIR / "vendor" / "rwkv_lightning" / "app.py").exists(),
             "rwkv_peft": (APP_DIR / "vendor" / "rwkv_peft" / "train.py").exists(),
             "llamafactory": (APP_DIR / "vendor" / "llamafactory" / "src" / "llamafactory").exists(),
+            "nano_vllm": (APP_DIR / "vendor" / "nano_vllm" / "nanovllm" / "__init__.py").exists(),
         },
     }

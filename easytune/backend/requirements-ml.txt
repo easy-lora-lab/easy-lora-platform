@@ -27,3 +27,9 @@ jsonlines
 robyn
 numpy
 ninja
+
+# Vendored nano-vLLM RWKV7 OpenAI-compatible serving
+aiohttp
+msgspec
+tqdm
+xxhash

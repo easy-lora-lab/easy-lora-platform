@@ -109,6 +109,22 @@ export EASYTUNE_API_TOKEN=change-this-token
 export EASYTUNE_CORS_ORIGINS=http://localhost:3000
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
+# Nano-vLLM RWKV7 OpenAI-compatible 推理服务，已内置在 backend/app/vendor
+cd easytune/backend/app/vendor/nano_vllm
+python -m nanovllm.entrypoints.openai.api_server \\
+  --model /path/to/rwkv7-model.pth \\
+  --served-model-name rwkv7-local \\
+  --host 0.0.0.0 \\
+  --port 8001 \\
+  --gpu-memory-utilization 0.97 \\
+  --rwkv-prefill-token-budget 2048 \\
+  --rwkv-prefill-max-batch-size 128 \\
+  --rwkv-prefill-chunk-size 256
+
+export EASYTUNE_INFERENCE_PROVIDER=nano_vllm
+export EASYTUNE_INFERENCE_BASE_URL=http://127.0.0.1:8001
+export EASYTUNE_INFERENCE_MODEL=rwkv7-local
+
 # RWKV Lightning 内置推理服务
 cd easytune/backend/app/vendor/rwkv_lightning
 python app.py --model-path /path/to/rwkv-model.pth --port 8001 --password optional-token`}</pre>

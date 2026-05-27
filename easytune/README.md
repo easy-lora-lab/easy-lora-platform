@@ -16,6 +16,7 @@ Dashboard -> Dataset -> Create Fine-tune -> Training Monitor
 - `qwen`：按 LLaMA-Factory 训练配置生成 YAML。优先检测系统 `llamafactory-cli`，没有时使用内置 `backend/app/vendor/llamafactory`。
 - `rwkv`：按 RWKV-PEFT SFT 格式生成训练数据和配置。优先检测系统 `rwkv-finetune`，没有时使用内置 `backend/app/vendor/rwkv_peft/train.py`。
 - `rwkv_lightning`：内置 `backend/app/vendor/rwkv_lightning`，用于启动本机 RWKV 推理服务。
+- `nano_vllm`：面向 RWKV7 `.pth` checkpoint 的 OpenAI-compatible serving profile，可复用本机独立 nano-vLLM 服务。
 
 当前已经有基础前置检查、runner 检测、GPU 提示和失败摘要。后续可以继续增强：
 
@@ -94,6 +95,22 @@ export EASYTUNE_INFERENCE_BASE_URL=http://localhost:8001/openai/v1
 export EASYTUNE_INFERENCE_MODEL=easytune-served-model
 export EASYTUNE_INFERENCE_API_KEY=optional-token
 
+# Nano-vLLM RWKV7 OpenAI-compatible serving, built in under backend/app/vendor
+cd easytune/backend/app/vendor/nano_vllm
+python -m nanovllm.entrypoints.openai.api_server \
+  --model /path/to/rwkv7-model.pth \
+  --served-model-name rwkv7-local \
+  --host 0.0.0.0 \
+  --port 8001 \
+  --gpu-memory-utilization 0.97 \
+  --rwkv-prefill-token-budget 2048 \
+  --rwkv-prefill-max-batch-size 128 \
+  --rwkv-prefill-chunk-size 256
+
+export EASYTUNE_INFERENCE_PROVIDER=nano_vllm
+export EASYTUNE_INFERENCE_BASE_URL=http://127.0.0.1:8001
+export EASYTUNE_INFERENCE_MODEL=rwkv7-local
+
 # 或 Ollama
 export EASYTUNE_INFERENCE_PROVIDER=ollama
 export EASYTUNE_INFERENCE_BASE_URL=http://localhost:11434
@@ -145,7 +162,7 @@ docker compose up --build
 | Evaluation | benchmark、自定义测试集、base vs finetuned 对比入口 |
 | Chat Playground | 调用本机推理后端，做问答对比 |
 | Model Registry | checkpoint、adapter、export、版本说明 |
-| Deploy / Inference | 前端 API 地址、后端健康、vLLM/Ollama/Transformers/RWKV Lightning 配置 |
+| Deploy / Inference | 前端 API 地址、后端健康、nano-vLLM/vLLM/Ollama/Transformers/RWKV Lightning 配置 |
 
 ## 使用流程
 
@@ -189,7 +206,7 @@ GET  /api/health
 - `backend/app/services/llamafactory_config_service.py`：继续扩展 qwen/RWKV 不同训练配置模板。
 - `backend/app/services/training_service.py`：继续增强中断、重试和更细的失败解析。
 - `backend/app/services/model_service.py`：后续可接 MLflow 或远端模型仓库。
-- `backend/app/services/inference_service.py`：已经支持 OpenAI-compatible/vLLM/Open WebUI/Ollama，后续可加更多推理后端。
+- `backend/app/services/inference_service.py`：已经支持 nano-vLLM/OpenAI-compatible/vLLM/Open WebUI/Ollama，后续可加更多推理后端。
 
 ## LLaMA-Factory 参考目录
 

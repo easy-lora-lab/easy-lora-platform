@@ -11,7 +11,17 @@ from app.models import ModelVersion
 from app.schemas import ValidationGenerateRequest, ValidationGenerateResponse
 
 
-OPENAI_COMPATIBLE_PROVIDERS = {"openai_compatible", "openai-compatible", "vllm", "openwebui", "open_webui"}
+OPENAI_COMPATIBLE_PROVIDERS = {
+    "openai_compatible",
+    "openai-compatible",
+    "vllm",
+    "openwebui",
+    "open_webui",
+    "nano_vllm",
+    "nano-vllm",
+    "nanovllm",
+    "rwkv_nanovllm",
+}
 _QWEN_CACHE: dict[str, Any] = {}
 
 
@@ -26,7 +36,7 @@ def generate_validation_answer(db: Session, payload: ValidationGenerateRequest) 
             status_code=400,
             detail=(
                 "Inference provider is not configured. Set EASYTUNE_INFERENCE_PROVIDER to "
-                "rwkv_lightning, qwen_transformers, openai_compatible, vllm, openwebui or ollama, then set "
+                "rwkv_lightning, qwen_transformers, nano_vllm, openai_compatible, vllm, openwebui or ollama, then set "
                 "EASYTUNE_INFERENCE_BASE_URL/MODEL."
             ),
         )
