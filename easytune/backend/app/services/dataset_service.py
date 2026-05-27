@@ -6,7 +6,6 @@ from datetime import datetime
 from io import StringIO
 from pathlib import Path
 from typing import Any
-from uuid import uuid4
 
 from fastapi import HTTPException, UploadFile
 from sqlalchemy.orm import Session
@@ -34,8 +33,8 @@ async def create_dataset_from_upload(db: Session, upload: UploadFile, name: str 
 
     content = await upload.read()
     safe_name = _safe_filename(upload.filename or f"dataset.{suffix}")
-    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S%f")
-    target_path = STORAGE_ROOT / "datasets" / f"{timestamp}_{uuid4().hex[:8]}_{safe_name}"
+    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+    target_path = STORAGE_ROOT / "datasets" / f"{timestamp}_{safe_name}"
     target_path.write_bytes(content)
 
     report = analyze_file(target_path, suffix)
@@ -168,10 +167,11 @@ def _format_stats(records: list[dict[str, Any]]) -> dict[str, int]:
 def _detect_format(stats: dict[str, int], sample_count: int) -> str:
     if sample_count == 0:
         return "unknown"
-    if stats["alpaca_like_count"] == sample_count:
+    threshold = max(1, sample_count // 2)
+    if stats["alpaca_like_count"] >= threshold:
         return "alpaca"
     sharegpt_count = stats["sharegpt_like_count"] + stats["openai_messages_like_count"]
-    if sharegpt_count == sample_count:
+    if sharegpt_count >= threshold:
         return "sharegpt"
     return "unknown"
 
@@ -328,7 +328,7 @@ def split_dataset(db: Session, dataset_id: int, valid_ratio: float = 0.1, seed: 
 
     indices = list(range(len(records)))
     random.Random(seed).shuffle(indices)
-    valid_count = max(1, int(round(len(records) * valid_ratio)))
+    valid_count = int(round(len(records) * valid_ratio))
     valid_indices = set(indices[:valid_count])
     train_records = [record for index, record in enumerate(records) if index not in valid_indices]
     valid_records = [record for index, record in enumerate(records) if index in valid_indices]
@@ -393,28 +393,33 @@ def _normalize_for_llamafactory(
             columns["history"] = "history"
         return normalized, {"file_name": output_name, "formatting": "alpaca", "columns": columns}
 
-    normalized = []
-    has_system = False
-    has_tools = False
-    for record in records:
-        item = {"messages": _normalize_sharegpt_messages(record)}
-        if record.get("system"):
-            item["system"] = record["system"]
-            has_system = True
-        if record.get("tools"):
-            item["tools"] = record["tools"]
-            has_tools = True
-        normalized.append(item)
+    first = records[0]
+    if isinstance(first.get("conversations"), list):
+        normalized = []
+        has_system = False
+        has_tools = False
+        for record in records:
+            item = {"conversations": record.get("conversations", [])}
+            if record.get("system"):
+                item["system"] = record["system"]
+                has_system = True
+            if record.get("tools"):
+                item["tools"] = record["tools"]
+                has_tools = True
+            normalized.append(item)
 
-    columns = {"messages": "messages"}
-    if has_system:
-        columns["system"] = "system"
-    if has_tools:
-        columns["tools"] = "tools"
+        columns = {"messages": "conversations"}
+        if has_system:
+            columns["system"] = "system"
+        if has_tools:
+            columns["tools"] = "tools"
+        return normalized, {"file_name": output_name, "formatting": "sharegpt", "columns": columns}
+
+    normalized = [{"messages": record.get("messages", [])} for record in records]
     return normalized, {
         "file_name": output_name,
         "formatting": "sharegpt",
-        "columns": columns,
+        "columns": {"messages": "messages"},
         "tags": {
             "role_tag": "role",
             "content_tag": "content",
