@@ -502,8 +502,10 @@ def RWKV_x070_CMix_one(x, x_prev, x_k, K_, V_):
     x_prev[1] = x
     k = x + xx * x_k
     k = torch.relu(F.linear(k, K_)) ** 2
-    kv = rwkv_mm_sparsity(k, V_)
-    # kv = k @ V_
+    if V_.shape[1] % 256 == 0 and V_.shape[0] % 64 == 0:
+        kv = rwkv_mm_sparsity(k, V_)
+    else:
+        kv = k @ V_
     # kv = SPMV_OP(k, V_)
     return kv
 

@@ -1,6 +1,5 @@
 
 import copy
-import os
 from typing import Optional, Dict, Sequence, List, Literal
 import logging
 import torch.nn.functional as F
@@ -24,14 +23,6 @@ PROMPT = (
         "Write a response that appropriately completes the request.\n\n"
         "### Instruction:\n{instruction}\n\n### Response:"
     )
-
-
-def _load_sft_source(data_file: str, split: str):
-    """Load either a HF dataset name or a local json/jsonl file."""
-    expanded_path = os.path.abspath(os.path.expanduser(data_file))
-    if os.path.isfile(expanded_path) and expanded_path.endswith((".json", ".jsonl")):
-        return load_dataset("json", data_files=expanded_path, split=split)
-    return load_dataset(data_file, split=split)
 
 
 
@@ -109,17 +100,16 @@ def sft_dataset(script_args):
     # logger.info("BOS Token", tokenizer.bos_token, tokenizer.bos_token_id)
     # logger.info("EOS Token", tokenizer.eos_token, tokenizer.eos_token_id)
 
-    raw_train_datasets = _load_sft_source(script_args.data_file, script_args.sft_split)
+    raw_train_datasets = load_dataset(script_args.data_file, split=script_args.sft_split)
 
     # if script_args.local_rank > 0: 
     #     torch.distributed.barrier()
         
-    map_workers = max(1, min(os.cpu_count() or 1, 32))
     train_dataset = raw_train_datasets.map(
         train_tokenize_function,
         batched=True,
         batch_size=3000,
-        num_proc=map_workers,
+        num_proc=32,
         remove_columns=raw_train_datasets.column_names,
         load_from_cache_file=True,
         desc="Running tokenizer on train dataset",

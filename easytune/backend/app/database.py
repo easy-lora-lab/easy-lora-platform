@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from typing import Generator
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 
@@ -42,6 +42,18 @@ def init_db() -> None:
     from app import models  # noqa: F401
 
     Base.metadata.create_all(bind=engine)
+    ensure_schema_columns()
+
+
+def ensure_schema_columns() -> None:
+    inspector = inspect(engine)
+    if "training_jobs" not in inspector.get_table_names():
+        return
+
+    training_job_columns = {column["name"] for column in inspector.get_columns("training_jobs")}
+    if "extra_config_json" not in training_job_columns:
+        with engine.begin() as connection:
+            connection.execute(text("ALTER TABLE training_jobs ADD COLUMN extra_config_json JSON"))
 
 
 def get_db() -> Generator[Session, None, None]:

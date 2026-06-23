@@ -28,6 +28,7 @@ export type TrainingJob = {
   stage: string;
   finetuning_type: string;
   budget_level: string;
+  extra_config_json: Record<string, unknown> | null;
   config_path: string | null;
   output_dir: string | null;
   status: string;
@@ -85,6 +86,17 @@ export type Health = {
     utilization_percent: string;
   }>;
   vendor?: Record<string, boolean>;
+  dependencies?: Record<
+    string,
+    {
+      python?: string;
+      available: boolean;
+      required: Record<string, boolean>;
+      optional: Record<string, boolean>;
+      missing: string[];
+      missing_optional: string[];
+    }
+  >;
 };
 
 export function errorMessage(error: unknown): string {

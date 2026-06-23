@@ -5,6 +5,7 @@ LlamaFactory/
 __pycache__/
 *.py[cod]
 .venv/
+.venv-*/
 venv/
 
 # Node / Next.js

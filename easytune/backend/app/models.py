@@ -38,6 +38,7 @@ class TrainingJob(Base):
     stage: Mapped[str] = mapped_column(String(64), nullable=False, default="sft")
     finetuning_type: Mapped[str] = mapped_column(String(64), nullable=False, default="lora")
     budget_level: Mapped[str] = mapped_column(String(64), nullable=False, default="balanced")
+    extra_config_json: Mapped[dict | None] = mapped_column(JSON, nullable=True)
     config_path: Mapped[str | None] = mapped_column(Text, nullable=True)
     output_dir: Mapped[str | None] = mapped_column(Text, nullable=True)
     status: Mapped[str] = mapped_column(String(32), nullable=False, default="pending")

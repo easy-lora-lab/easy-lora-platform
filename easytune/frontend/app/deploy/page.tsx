@@ -81,7 +81,23 @@ export default function DeployPage() {
             </div>
             <div>
               <span>RWKV train</span>
-              <strong>{health?.rwkv_finetune_available ? "system cli" : "vendor RWKV-PEFT / mock"}</strong>
+              <strong>{health?.rwkv_finetune_available ? "system cli" : "vendor RWKV-PEFT"}</strong>
+            </div>
+            <div>
+              <span>RWKV deps</span>
+              <strong>
+                {health?.dependencies?.rwkv_peft?.available
+                  ? "ready"
+                  : `missing: ${health?.dependencies?.rwkv_peft?.missing?.join(", ") || "-"}`}
+              </strong>
+            </div>
+            <div>
+              <span>RWKV python</span>
+              <strong>{health?.dependencies?.rwkv_peft?.python || "-"}</strong>
+            </div>
+            <div>
+              <span>RWKV optional</span>
+              <strong>{health?.dependencies?.rwkv_peft?.missing_optional?.join(", ") || "ready"}</strong>
             </div>
             <div>
               <span>inference</span>

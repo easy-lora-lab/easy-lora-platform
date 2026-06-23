@@ -99,6 +99,14 @@ export default function TrainingJobDetailPage() {
           <dd>{job.finetuning_type}</dd>
           <dt>budget_level</dt>
           <dd>{job.budget_level}</dd>
+          {job.extra_config_json && (
+            <>
+              <dt>extra_config</dt>
+              <dd>
+                <pre className={styles.code}>{JSON.stringify(job.extra_config_json, null, 2)}</pre>
+              </dd>
+            </>
+          )}
           <dt>command</dt>
           <dd>{job.command}</dd>
           <dt>config_path</dt>

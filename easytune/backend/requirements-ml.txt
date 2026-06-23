@@ -22,6 +22,8 @@ triton
 rwkv-fla
 rwkv
 jsonlines
+wandb
+ninja
 
 # RWKV Lightning inference server
 robyn

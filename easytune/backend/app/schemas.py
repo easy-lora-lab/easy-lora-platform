@@ -58,6 +58,7 @@ class TrainingJobCreate(BaseModel):
     stage: str = "sft"
     finetuning_type: str = "lora"
     budget_level: str = "balanced"
+    extra_config_json: dict[str, Any] | None = None
 
 
 class TrainingJobRead(ORMModel):
@@ -70,6 +71,7 @@ class TrainingJobRead(ORMModel):
     stage: str
     finetuning_type: str
     budget_level: str
+    extra_config_json: dict[str, Any] | None
     config_path: str | None
     output_dir: str | None
     status: str

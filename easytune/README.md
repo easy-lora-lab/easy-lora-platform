@@ -14,13 +14,13 @@ Dashboard -> Dataset -> Create Fine-tune -> Training Monitor
 第一版只预留两个模型方向：
 
 - `qwen`：按 LLaMA-Factory 训练配置生成 YAML。优先检测系统 `llamafactory-cli`，没有时使用内置 `backend/app/vendor/llamafactory`。
-- `rwkv`：按 RWKV-PEFT SFT 格式生成训练数据和配置。优先检测系统 `rwkv-finetune`，没有时使用内置 `backend/app/vendor/rwkv_peft/train.py`。
+- `rwkv`：按 RWKV-PEFT 生成训练数据和配置。优先检测系统 `rwkv-finetune`，没有时使用内置 `backend/app/vendor/rwkv_peft/train.py`。当前支持 LoRA、QLoRA、State Tuning、Miss/DiSHA、AdaLoRA、Prefix 和全量训练入口。默认 `data_type=sft`；离线 smoke 或不想走 HuggingFace tokenizer 时可选 `data_type=jsonl`，平台会生成 RWKV-PEFT 原生 `{"text": ...}` 数据。
 - `rwkv_lightning`：内置 `backend/app/vendor/rwkv_lightning`，用于启动本机 RWKV 推理服务。
 
 当前已经有基础前置检查、runner 检测、GPU 提示和失败摘要。后续可以继续增强：
 
 - Qwen 实习生：继续扩展不同 qwen 尺寸的模板、显存估算和失败解析规则。
-- RWKV 实习生：根据实际 RWKV runner 参数继续细化配置模板。
+- RWKV 实习生：继续完善不同模型尺寸的默认参数、显存估算、GPU 真训 smoke 和训练后推理合并闭环。
 
 ## 目录结构
 
@@ -57,6 +57,10 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```bash
 pip install -r requirements-ml.txt
 ```
+
+进入「Deploy / Inference」可以查看 `RWKV deps`。如果缺 `torch`、`lightning`、`peft`、`rwkv`、`jsonlines` 等模块，RWKV-PEFT 真实训练会在启动前失败并提示缺失依赖；这是为了避免把 mock 或半启动状态误认为正式训练。
+
+RWKV-PEFT 默认仍可使用 DeepSpeed fused optimizer；小模型 smoke 或不希望编译 DeepSpeed optimizer 时，在创建训练任务里把 `optimizer` 设为 `adamw`。
 
 健康检查：
 
@@ -140,7 +144,7 @@ docker compose up --build
 | --- | --- |
 | Dashboard | GPU 状态、最近训练任务、失败任务、模型数量、数据集数量 |
 | Dataset | 上传 JSONL/CSV、格式检查、样本预览、train/valid 切分、错误样本提示 |
-| Create Fine-tune | base model、训练方式、LoRA/QLoRA、模板选择、epoch/lr/batch/output |
+| Create Fine-tune | base model、训练方式、RWKV-PEFT 参数、模板选择、epoch/lr/batch/output |
 | Training Monitor | 任务进度、日志、命令、配置、输出目录，后续接 loss 曲线和停止/恢复 |
 | Evaluation | benchmark、自定义测试集、base vs finetuned 对比入口 |
 | Chat Playground | 调用本机推理后端，做问答对比 |
@@ -154,8 +158,8 @@ docker compose up --build
 3. 点击「转换」，生成 `storage/llamafactory_data/dataset_{id}.jsonl` 和 `dataset_info.json`。
 4. 进入「创建训练任务」，选择已转换数据集，选择 `qwen` 或 `rwkv`。
 5. 提交后查看任务详情页，可见 `command`、`config_path`、`log_path`、`output_dir`。
-6. 点击启动。没有对应 runner 时不会崩溃，会自动进入 mock train；有 runner 时会先做配置、数据、路径、GPU 提示等前置检查。
-7. 训练完成后自动生成 ModelVersion、export manifest 和 `storage/registry/model_versions.json`。
+6. 点击启动。Qwen 没有对应 runner 时会进入 mock train；RWKV 如果检测到内置 RWKV-PEFT 但依赖缺失，会先报清楚缺哪个模块，避免误以为真实训练已经开始。
+7. 训练完成后自动生成 ModelVersion、export manifest 和 `storage/registry/model_versions.json`。RWKV-PEFT 的 `rwkv-*.pth` 和同级 `job_x-adapter/` 目录会被识别为模型产物。
 8. 进入「人工验收」，选择模型版本；可手填实际答案，也可在配置推理服务后生成实际答案并保存人工评测记录。
 
 ## API
@@ -186,7 +190,7 @@ GET  /api/health
 ## 后续接入点
 
 - `backend/app/services/dataset_service.py`：继续增强数据清洗、字段映射、采样预览和质检规则。
-- `backend/app/services/llamafactory_config_service.py`：继续扩展 qwen/RWKV 不同训练配置模板。
+- `backend/app/services/llamafactory_config_service.py`：继续扩展 qwen/RWKV 不同训练配置模板和默认参数。
 - `backend/app/services/training_service.py`：继续增强中断、重试和更细的失败解析。
 - `backend/app/services/model_service.py`：后续可接 MLflow 或远端模型仓库。
 - `backend/app/services/inference_service.py`：已经支持 OpenAI-compatible/vLLM/Open WebUI/Ollama，后续可加更多推理后端。

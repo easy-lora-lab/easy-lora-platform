@@ -23,12 +23,15 @@ from app.services.model_service import create_model_version_for_job
 
 VALID_MODEL_FAMILIES = {"qwen", "rwkv"}
 VALID_TEMPLATES = {"qwen", "rwkv", "default"}
-VALID_FINETUNING_TYPES = {"lora", "qlora", "freeze", "full"}
+VALID_QWEN_FINETUNING_TYPES = {"lora", "qlora", "freeze", "full"}
+VALID_RWKV_FINETUNING_TYPES = {"lora", "qlora", "state", "miss", "disha", "adalora", "prefix", "full", "none"}
 VALID_BUDGETS = {"low", "balanced", "high"}
 ACTIVE_JOB_STATUSES = {"starting", "running"}
 VENDOR_ROOT = APP_DIR / "vendor"
 RWKV_PEFT_ROOT = VENDOR_ROOT / "rwkv_peft"
 LLAMAFACTORY_ROOT = VENDOR_ROOT / "llamafactory"
+BACKEND_DIR = APP_DIR.parent
+RWKV_ML_VENV_PYTHON = BACKEND_DIR / ".venv-ml" / "bin" / "python"
 FAILURE_HINTS = [
     ("cuda out of memory", "GPU 显存不足。请降低预算等级、cutoff_len 或 batch size。"),
     ("outofmemoryerror", "GPU 显存不足。请降低预算等级、cutoff_len 或 batch size。"),
@@ -53,8 +56,10 @@ def create_training_job(db: Session, payload: TrainingJobCreate) -> TrainingJob:
         raise HTTPException(status_code=400, detail="template must be qwen, rwkv or default.")
     if payload.stage != "sft":
         raise HTTPException(status_code=400, detail="Only sft stage is supported in v1.")
-    if payload.finetuning_type not in VALID_FINETUNING_TYPES:
-        raise HTTPException(status_code=400, detail="finetuning_type must be lora, qlora, freeze or full.")
+    valid_finetuning_types = VALID_RWKV_FINETUNING_TYPES if payload.model_family == "rwkv" else VALID_QWEN_FINETUNING_TYPES
+    if payload.finetuning_type not in valid_finetuning_types:
+        allowed = ", ".join(sorted(valid_finetuning_types))
+        raise HTTPException(status_code=400, detail=f"finetuning_type for {payload.model_family} must be one of: {allowed}.")
     if payload.budget_level not in VALID_BUDGETS:
         raise HTTPException(status_code=400, detail="budget_level must be low, balanced or high.")
 
@@ -212,12 +217,15 @@ def _find_training_runner(job: TrainingJob) -> dict[str, Any] | None:
         cli_path = shutil.which("rwkv-finetune")
         if cli_path:
             return {"label": cli_path, "kind": "rwkv_cli", "cli_path": cli_path}
-        if (RWKV_PEFT_ROOT / "train.py").exists() and _modules_available(["torch", "lightning", "deepspeed", "numpy"]):
+        required_modules = _rwkv_required_modules(job)
+        python_executable = _rwkv_python_executable()
+        if (RWKV_PEFT_ROOT / "train.py").exists() and _python_modules_available(python_executable, required_modules):
             return {
                 "label": f"vendor RWKV-PEFT ({RWKV_PEFT_ROOT})",
                 "kind": "rwkv_peft_vendor",
                 "cwd": str(RWKV_PEFT_ROOT),
                 "env": _env_with_pythonpath(str(RWKV_PEFT_ROOT)),
+                "python": python_executable,
             }
         return None
 
@@ -240,7 +248,7 @@ def _build_training_command(job: TrainingJob, runner: dict[str, Any]) -> list[st
     if kind == "rwkv_cli":
         return [runner["cli_path"], "train", job.config_path or ""]
     if kind == "rwkv_peft_vendor":
-        return _build_rwkv_peft_command(job)
+        return _build_rwkv_peft_command(job, runner.get("python") or sys.executable)
     if kind == "llamafactory_vendor":
         return [sys.executable, "-m", "llamafactory.cli", "train", job.config_path or ""]
     return [runner["cli_path"], "train", job.config_path or ""]
@@ -272,6 +280,10 @@ def _run_preflight_checks(db: Session, job: TrainingJob, runner: dict[str, Any] 
         Path(job.output_dir).mkdir(parents=True, exist_ok=True)
     if job.log_path:
         Path(job.log_path).parent.mkdir(parents=True, exist_ok=True)
+
+    config = _load_training_config(job)
+    if job.model_family == "rwkv" and (runner or (RWKV_PEFT_ROOT / "train.py").exists()):
+        _check_rwkv_preflight(job, config, errors, warnings)
 
     if runner:
         local_model_path = _local_model_path(job.base_model)
@@ -323,10 +335,13 @@ def _runner_version(runner: dict[str, Any]) -> str | None:
     return output.splitlines()[0][:300] if output else None
 
 
-def _build_rwkv_peft_command(job: TrainingJob) -> list[str]:
-    config = yaml.safe_load(Path(job.config_path or "").read_text(encoding="utf-8")) or {}
+def _build_rwkv_peft_command(job: TrainingJob, python_executable: str | None = None) -> list[str]:
+    config = _load_training_config(job)
+    sft_fields = config.get("sft_field", ["query", "response"])
+    if isinstance(sft_fields, str):
+        sft_fields = [field for field in sft_fields.split() if field]
     command = [
-        sys.executable,
+        python_executable or _rwkv_python_executable(),
         "train.py",
         "--load_model",
         job.base_model,
@@ -335,38 +350,141 @@ def _build_rwkv_peft_command(job: TrainingJob) -> list[str]:
         "--data_file",
         str(config["dataset_path"]),
         "--data_type",
-        "sft",
-        "--sft_field",
-        "query",
-        "response",
-        "--sft_split",
-        "train",
+        str(config.get("data_type", "sft")),
     ]
+    command.extend(["--sft_field", *[str(field) for field in sft_fields]])
+    command.extend(["--sft_split", str(config.get("sft_split", "train"))])
     for flag, key, default in (
+        ("--vocab_size", "vocab_size", 65536),
         ("--my_testing", "my_testing", "x070"),
-        ("--ctx_len", "cutoff_len", 1024),
-        ("--epoch_count", "num_train_epochs", 1),
+        ("--ctx_len", "ctx_len", config.get("cutoff_len", 1024)),
+        ("--chunk_ctx", "chunk_ctx", 512),
+        ("--epoch_count", "epoch_count", config.get("num_train_epochs", 1)),
+        ("--epoch_begin", "epoch_begin", 0),
         ("--epoch_steps", "epoch_steps", 100),
         ("--epoch_save", "epoch_save", 1),
         ("--micro_bsz", "micro_bsz", 1),
-        ("--accumulate_grad_batches", "gradient_accumulation_steps", 1),
-        ("--lr_init", "learning_rate", 2e-4),
+        ("--accumulate_grad_batches", "accumulate_grad_batches", config.get("gradient_accumulation_steps", 1)),
+        ("--lr_init", "lr_init", config.get("learning_rate", 2e-4)),
         ("--lr_final", "lr_final", 1e-5),
+        ("--warmup_steps", "warmup_steps", 0),
+        ("--beta1", "beta1", 0.9),
+        ("--beta2", "beta2", 0.99),
+        ("--adam_eps", "adam_eps", 1e-8),
         ("--n_layer", "n_layer", 24),
         ("--n_embd", "n_embd", 2048),
+        ("--head_size_a", "head_size_a", 64),
+        ("--head_size_divisor", "head_size_divisor", 8),
+        ("--grad_cp", "grad_cp", 1),
+        ("--dropout", "dropout", 0),
+        ("--weight_decay", "weight_decay", 0),
+        ("--layerwise_lr", "layerwise_lr", 1),
+        ("--ds_bucket_mb", "ds_bucket_mb", 200),
+        ("--dataload", "dataload", "pad"),
+        ("--train_type", "train_type", "none"),
+        ("--loss_mask", "loss_mask", "none"),
+        ("--data_shuffle", "data_shuffle", 1),
+        ("--lr_schedule", "lr_schedule", "cos"),
+        ("--optimizer", "optimizer", "none"),
         ("--op", "op", "cuda"),
+        ("--accelerator", "accelerator", "gpu"),
         ("--strategy", "strategy", "deepspeed_stage_1"),
         ("--precision", "precision", "bf16"),
         ("--devices", "devices", 1),
+        ("--num_nodes", "num_nodes", 1),
+        ("--num_workers", "num_workers", 8),
     ):
         command.extend([flag, str(config.get(key, default))])
+    if config.get("fused_kernel"):
+        command.append("--fused_kernel")
+    if config.get("persistent_workers"):
+        command.append("--persistent_workers")
     if config.get("peft"):
         command.extend(["--peft", str(config["peft"])])
-    if config.get("lora_config"):
-        command.extend(["--lora_config", json.dumps(config["lora_config"])])
+    if config.get("peft_config"):
+        command.extend(["--peft_config", json.dumps(config["peft_config"])])
     if config.get("quant"):
         command.extend(["--quant", str(config["quant"])])
+    train_parts = config.get("train_parts")
+    if isinstance(train_parts, list) and train_parts:
+        command.append("--train_parts")
+        command.extend(str(part) for part in train_parts)
+    if config.get("wandb"):
+        command.extend(["--wandb", str(config["wandb"])])
     return command
+
+
+def _load_training_config(job: TrainingJob) -> dict[str, Any]:
+    if not job.config_path or not Path(job.config_path).exists():
+        return {}
+    loaded = yaml.safe_load(Path(job.config_path).read_text(encoding="utf-8")) or {}
+    return loaded if isinstance(loaded, dict) else {}
+
+
+def _rwkv_required_modules(job: TrainingJob) -> list[str]:
+    config = _load_training_config(job)
+    modules = ["torch", "lightning", "peft", "transformers", "datasets", "jsonlines", "rwkv", "numpy"]
+    if "deepspeed" in str(config.get("strategy", "")).lower():
+        modules.append("deepspeed")
+    if str(config.get("op", "")).lower() == "fla":
+        modules.append("rwkvfla")
+    if str(config.get("quant", "none")).lower() in {"nf4", "int8"}:
+        modules.append("bitsandbytes")
+    return modules
+
+
+def _rwkv_python_executable() -> str:
+    configured = os.getenv("EASYTUNE_RWKV_PYTHON")
+    if configured:
+        return configured
+    if RWKV_ML_VENV_PYTHON.exists():
+        return str(RWKV_ML_VENV_PYTHON)
+    return sys.executable
+
+
+def _python_modules_available(python_executable: str, module_names: list[str]) -> bool:
+    return not _python_missing_modules(python_executable, module_names)
+
+
+def _python_missing_modules(python_executable: str, module_names: list[str]) -> list[str]:
+    if not Path(python_executable).exists():
+        return module_names
+    script = (
+        "import importlib.util, json, sys; "
+        "mods=json.loads(sys.argv[1]); "
+        "print(json.dumps([m for m in mods if importlib.util.find_spec(m) is None]))"
+    )
+    output = _command_output([python_executable, "-c", script, json.dumps(module_names)])
+    if output is None:
+        return module_names
+    try:
+        loaded = json.loads(output)
+    except json.JSONDecodeError:
+        return module_names
+    return [str(item) for item in loaded] if isinstance(loaded, list) else module_names
+
+
+def _check_rwkv_preflight(
+    job: TrainingJob,
+    config: dict[str, Any],
+    errors: list[str],
+    warnings: list[str],
+) -> None:
+    if not config:
+        return
+    python_executable = _rwkv_python_executable()
+    if not Path(python_executable).exists():
+        errors.append(f"RWKV-PEFT Python does not exist: {python_executable}.")
+        return
+    missing = _python_missing_modules(python_executable, _rwkv_required_modules(job))
+    if missing:
+        errors.append(f"RWKV-PEFT environment {python_executable} is missing Python modules: {', '.join(missing)}.")
+    peft = str(config.get("peft", "none")).lower()
+    op = str(config.get("op", "cuda")).lower()
+    if peft == "state" and op != "fla":
+        warnings.append("State tuning is usually run with --op fla; current config uses a different op.")
+    if int(config.get("chunk_ctx", 0) or 0) > int(config.get("ctx_len", 0) or 0):
+        errors.append("chunk_ctx must be less than or equal to ctx_len for RWKV-PEFT.")
 
 
 def _local_model_path(base_model: str) -> Path | None:

@@ -18,6 +18,7 @@ ADAPTER_ARTIFACT_NAMES = {
     "pytorch_model.bin",
     "model.safetensors",
 }
+RWKV_WEIGHT_SUFFIXES = {".pth"}
 
 
 def create_model_version_for_job(db: Session, job: TrainingJob) -> ModelVersion:
@@ -32,12 +33,13 @@ def create_model_version_for_job(db: Session, job: TrainingJob) -> ModelVersion:
 
     manifest = _build_export_manifest(job)
     export_path = manifest["export_path"]
-    status = "ready" if manifest["has_adapter_artifact"] else "incomplete"
+    adapter_path = manifest["adapter_path"]
+    status = "ready" if manifest["has_model_artifact"] else "incomplete"
     model_version = ModelVersion(
         training_job_id=job.id,
         name=f"{job.name} v1",
         base_model=job.base_model,
-        adapter_path=job.output_dir or "",
+        adapter_path=adapter_path,
         export_path=export_path,
         status=status,
     )
@@ -53,9 +55,13 @@ def create_model_version_for_job(db: Session, job: TrainingJob) -> ModelVersion:
 def _build_export_manifest(job: TrainingJob) -> dict[str, Any]:
     output_dir = Path(job.output_dir or "").resolve()
     export_dir = output_dir / "export"
-    files = _scan_artifacts(output_dir)
+    scan_roots = _artifact_scan_roots(output_dir)
+    files = _scan_artifacts(scan_roots)
+    adapter_path = _select_model_artifact_path(output_dir, files)
     total_size = sum(item["size_bytes"] for item in files)
     has_adapter_artifact = any(item["name"] in ADAPTER_ARTIFACT_NAMES for item in files)
+    has_rwkv_weight_artifact = any(_is_rwkv_weight_artifact(item) for item in files)
+    has_model_artifact = has_adapter_artifact or has_rwkv_weight_artifact
     return {
         "manifest_version": 1,
         "model_version_id": None,
@@ -63,38 +69,78 @@ def _build_export_manifest(job: TrainingJob) -> dict[str, Any]:
         "training_job_name": job.name,
         "model_family": job.model_family,
         "base_model": job.base_model,
-        "adapter_path": str(output_dir),
+        "adapter_path": str(adapter_path or output_dir),
         "export_path": str(export_dir),
         "created_at": datetime.utcnow().isoformat(),
         "artifact_count": len(files),
         "total_size_bytes": total_size,
         "has_adapter_artifact": has_adapter_artifact,
+        "has_rwkv_weight_artifact": has_rwkv_weight_artifact,
+        "has_model_artifact": has_model_artifact,
+        "scan_roots": [str(root) for root in scan_roots],
         "files": files,
     }
 
 
-def _scan_artifacts(output_dir: Path) -> list[dict[str, Any]]:
-    if not output_dir.exists():
+def _artifact_scan_roots(output_dir: Path) -> list[Path]:
+    roots = [output_dir]
+    sibling_adapter_dir = output_dir.parent / f"{output_dir.name}-adapter"
+    if sibling_adapter_dir.exists():
+        roots.append(sibling_adapter_dir.resolve())
+    return roots
+
+
+def _scan_artifacts(roots: list[Path]) -> list[dict[str, Any]]:
+    existing_roots = [root for root in roots if root.exists()]
+    if not existing_roots:
         return []
 
     artifacts: list[dict[str, Any]] = []
-    for path in sorted(output_dir.rglob("*")):
-        if not path.is_file():
-            continue
-        relative = path.relative_to(output_dir)
-        if relative.parts and relative.parts[0] == "export":
-            continue
-        stat = path.stat()
-        artifacts.append(
-            {
-                "path": str(relative),
-                "name": path.name,
-                "size_bytes": stat.st_size,
-                "modified_at": datetime.utcfromtimestamp(stat.st_mtime).isoformat(),
-                "sha256": _sha256_if_reasonable(path, stat.st_size),
-            }
-        )
+    for root in existing_roots:
+        for path in sorted(root.rglob("*")):
+            if not path.is_file():
+                continue
+            relative = path.relative_to(root)
+            if relative.parts and relative.parts[0] == "export":
+                continue
+            stat = path.stat()
+            artifacts.append(
+                {
+                    "root": str(root),
+                    "path": str(relative),
+                    "absolute_path": str(path),
+                    "name": path.name,
+                    "size_bytes": stat.st_size,
+                    "modified_at": datetime.utcfromtimestamp(stat.st_mtime).isoformat(),
+                    "sha256": _sha256_if_reasonable(path, stat.st_size),
+                }
+            )
     return artifacts
+
+
+def _select_model_artifact_path(output_dir: Path, files: list[dict[str, Any]]) -> Path | None:
+    adapter_dirs = sorted(
+        {
+            str(Path(item["absolute_path"]).parent)
+            for item in files
+            if item["name"] in ADAPTER_ARTIFACT_NAMES
+        }
+    )
+    if adapter_dirs:
+        return Path(adapter_dirs[-1])
+
+    rwkv_weights = sorted(
+        (Path(item["absolute_path"]) for item in files if _is_rwkv_weight_artifact(item)),
+        key=lambda path: path.stat().st_mtime,
+    )
+    if rwkv_weights:
+        return rwkv_weights[-1]
+    return output_dir if output_dir.exists() else None
+
+
+def _is_rwkv_weight_artifact(item: dict[str, Any]) -> bool:
+    path = Path(str(item["name"]))
+    return path.suffix.lower() in RWKV_WEIGHT_SUFFIXES and path.name.startswith("rwkv-")
 
 
 def _sha256_if_reasonable(path: Path, size_bytes: int) -> str | None:
@@ -147,6 +193,8 @@ def _register_model_version(model_version: ModelVersion, manifest: dict[str, Any
             "artifact_count": manifest["artifact_count"],
             "total_size_bytes": manifest["total_size_bytes"],
             "has_adapter_artifact": manifest["has_adapter_artifact"],
+            "has_rwkv_weight_artifact": manifest["has_rwkv_weight_artifact"],
+            "has_model_artifact": manifest["has_model_artifact"],
         }
     )
     registry_path.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")

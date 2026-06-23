@@ -7,7 +7,11 @@ from rwkvt.args_type import TrainingArgs
 from rwkvt.lightning_train.trainer import generate_init_weight
 from accelerate import init_empty_weights
 
-from peft import get_peft_model, LoraConfig, BoneConfig, MissConfig, TaskType
+from peft import get_peft_model, LoraConfig, MissConfig, TaskType
+try:
+    from peft import BoneConfig
+except ImportError:
+    BoneConfig = None
 from peft import *
 if "7" in os.environ["RWKV_MY_TESTING"]:
     from rwkvt.rwkv7.model import RWKV7 as RWKVModel
