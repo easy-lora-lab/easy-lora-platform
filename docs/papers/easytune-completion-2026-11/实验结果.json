@@ -1,0 +1,623 @@
+{
+  "date": "2026-11-03",
+  "hardware": "NVIDIA GeForce RTX 5070 Ti, 16 GB, single GPU",
+  "models": [
+    {
+      "model": "Qwen3.5-0.8B",
+      "task": "企业工单路由（合成）",
+      "prepared_training_samples": 420,
+      "used_training_samples": 420,
+      "training_job_id": 7,
+      "model_version_id": 5,
+      "finetuning_type": "qlora",
+      "training_parameters": {
+        "cutoff_len": 256,
+        "num_train_epochs": 1,
+        "lora_rank": 8,
+        "learning_rate": 0.0002,
+        "per_device_train_batch_size": 1,
+        "gradient_accumulation_steps": 8,
+        "seed": 42
+      },
+      "training_metrics": {
+        "epoch": 1.0,
+        "total_flos": 285802124590080.0,
+        "train_loss": 0.2697252992821752,
+        "train_runtime": 343.7404,
+        "train_samples_per_second": 1.222,
+        "train_steps_per_second": 0.154
+      },
+      "test_count": 7,
+      "base_passed": 0,
+      "tuned_passed": 3,
+      "comparisons": [
+        {
+          "id": "TEST-00-00-00",
+          "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-00-00-00。来源：客户服务工作台。\n问题描述：不同部门的同事都说业务站点打不开，服务整体已经停止。",
+          "expected": {
+            "code": "SQ01",
+            "priority": "P0",
+            "team": "TECH-1",
+            "sla_hours": 1
+          },
+          "rule": "strict_json",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "{\"code\": \"TEST-00-00-00\", \"priority\": \"high\", \"team\": \"service_team\", \"sla_hours\": 48}",
+            "elapsed_seconds": 2.601,
+            "output_tokens": 37,
+            "tokens_per_second": 14.23
+          },
+          "tuned": {
+            "answer": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}",
+            "elapsed_seconds": 3.525,
+            "output_tokens": 25,
+            "tokens_per_second": 7.09
+          },
+          "scores": {
+            "base": false,
+            "tuned": true
+          }
+        },
+        {
+          "id": "TEST-01-00-00",
+          "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-01-00-00。来源：客户服务工作台。\n问题描述：我只提交了一次付款，但账单里出现了两笔对应这张订单的扣款。",
+          "expected": {
+            "code": "SQ02",
+            "priority": "P1",
+            "team": "FIN-2",
+            "sla_hours": 4
+          },
+          "rule": "strict_json",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "{\"code\": \"TEST-01-00-00\", \"priority\": \"high\", \"team\": \"customer_support\", \"sla_hours\": 24}",
+            "elapsed_seconds": 1.305,
+            "output_tokens": 37,
+            "tokens_per_second": 28.34
+          },
+          "tuned": {
+            "answer": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}",
+            "elapsed_seconds": 1.637,
+            "output_tokens": 24,
+            "tokens_per_second": 14.66
+          },
+          "scores": {
+            "base": false,
+            "tuned": true
+          }
+        },
+        {
+          "id": "TEST-02-00-00",
+          "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-02-00-00。来源：客户服务工作台。\n问题描述：同事都能进平台，唯独我输入密码失败多次后被禁止登录，提示已锁。",
+          "expected": {
+            "code": "SQ03",
+            "priority": "P2",
+            "team": "IAM-3",
+            "sla_hours": 8
+          },
+          "rule": "strict_json",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "{\"code\": \"02000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "elapsed_seconds": 3.364,
+            "output_tokens": 96,
+            "tokens_per_second": 28.54
+          },
+          "tuned": {
+            "answer": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"TECH-1\",\"sla_hours\":8}",
+            "elapsed_seconds": 1.684,
+            "output_tokens": 25,
+            "tokens_per_second": 14.84
+          },
+          "scores": {
+            "base": false,
+            "tuned": false
+          }
+        },
+        {
+          "id": "TEST-03-00-00",
+          "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-03-00-00。来源：客户服务工作台。\n问题描述：说好前天交付的包裹至今仍在途中，已超过约定时效。",
+          "expected": {
+            "code": "SQ04",
+            "priority": "P2",
+            "team": "LOG-4",
+            "sla_hours": 24
+          },
+          "rule": "strict_json",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "{\"code\": \"TEST-03-00-00\", \"priority\": \"high\", \"team\": \"客户服务\", \"sla_hours\": 24}",
+            "elapsed_seconds": 1.384,
+            "output_tokens": 36,
+            "tokens_per_second": 26.02
+          },
+          "tuned": {
+            "answer": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"TECH-1\",\"sla_hours\":24}",
+            "elapsed_seconds": 1.684,
+            "output_tokens": 26,
+            "tokens_per_second": 15.44
+          },
+          "scores": {
+            "base": false,
+            "tuned": false
+          }
+        },
+        {
+          "id": "TEST-04-00-00",
+          "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-04-00-00。来源：客户服务工作台。\n问题描述：这件东西已经收到了，使用需求变了，我希望退回商家。",
+          "expected": {
+            "code": "SQ05",
+            "priority": "P2",
+            "team": "AFT-5",
+            "sla_hours": 48
+          },
+          "rule": "strict_json",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "{\"code\": \"TEST-04-00-00\", \"priority\": \"high\", \"team\": \"customer_support\", \"sla_hours\": 24}",
+            "elapsed_seconds": 1.277,
+            "output_tokens": 37,
+            "tokens_per_second": 28.97
+          },
+          "tuned": {
+            "answer": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"TECH-1\",\"sla_hours\":4}",
+            "elapsed_seconds": 1.371,
+            "output_tokens": 25,
+            "tokens_per_second": 18.24
+          },
+          "scores": {
+            "base": false,
+            "tuned": false
+          }
+        },
+        {
+          "id": "TEST-05-00-00",
+          "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-05-00-00。来源：客户服务工作台。\n问题描述：付款和配送都没问题，只是票据上写的单位名称错了，请修正抬头。",
+          "expected": {
+            "code": "SQ06",
+            "priority": "P3",
+            "team": "FIN-6",
+            "sla_hours": 72
+          },
+          "rule": "strict_json",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "{\"code\": \"TEST-05-00-00\", \"priority\": \"high\", \"team\": \"customer_support\", \"sla_hours\": 24}",
+            "elapsed_seconds": 1.087,
+            "output_tokens": 37,
+            "tokens_per_second": 34.05
+          },
+          "tuned": {
+            "answer": "{\"code\":\"SQ06\",\"priority\":\"P2\",\"team\":\"FIN-2\",\"sla_hours\":4}",
+            "elapsed_seconds": 1.48,
+            "output_tokens": 24,
+            "tokens_per_second": 16.21
+          },
+          "scores": {
+            "base": false,
+            "tuned": false
+          }
+        },
+        {
+          "id": "TEST-06-00-00",
+          "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-06-00-00。来源：客户服务工作台。\n问题描述：能来个人帮我一下吗？目前没有更多细节。",
+          "expected": {
+            "code": "SQ00",
+            "priority": "REVIEW",
+            "team": "HUMAN-0",
+            "sla_hours": 0
+          },
+          "rule": "strict_json",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "{\"code\": \"TEST-06-00-00\", \"priority\": \"high\", \"team\": \"customer_support\", \"sla_hours\": 1}",
+            "elapsed_seconds": 1.651,
+            "output_tokens": 36,
+            "tokens_per_second": 21.81
+          },
+          "tuned": {
+            "answer": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}",
+            "elapsed_seconds": 1.889,
+            "output_tokens": 25,
+            "tokens_per_second": 13.24
+          },
+          "scores": {
+            "base": false,
+            "tuned": true
+          }
+        }
+      ]
+    },
+    {
+      "model": "Qwen3.5-2B",
+      "task": "商品评价情感分类（合成）",
+      "prepared_training_samples": 24,
+      "used_training_samples": 24,
+      "training_job_id": 11,
+      "model_version_id": 6,
+      "finetuning_type": "qlora",
+      "training_parameters": {
+        "cutoff_len": 128,
+        "num_train_epochs": 1,
+        "per_device_train_batch_size": 1,
+        "gradient_accumulation_steps": 2,
+        "lora_rank": 8,
+        "learning_rate": 0.0002,
+        "seed": 42
+      },
+      "training_metrics": {
+        "epoch": 1.0,
+        "total_flos": 26112622528512.0,
+        "train_loss": 0.4105096338171279,
+        "train_runtime": 27.0161,
+        "train_samples_per_second": 0.888,
+        "train_steps_per_second": 0.444
+      },
+      "test_count": 6,
+      "base_passed": 6,
+      "tuned_passed": 6,
+      "comparisons": [
+        {
+          "id": "SENT-1",
+          "prompt": "判断商品评价的情感，只输出正面、负面或中性中的一个词，不要解释。\n外观漂亮而且运行流畅，这次购物太满意了。",
+          "expected": "正面",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "正面",
+            "elapsed_seconds": 1.273,
+            "output_tokens": 2,
+            "tokens_per_second": 1.57
+          },
+          "tuned": {
+            "answer": "正面",
+            "elapsed_seconds": 1.59,
+            "output_tokens": 2,
+            "tokens_per_second": 1.26
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "SENT-2",
+          "prompt": "判断商品评价的情感，只输出正面、负面或中性中的一个词，不要解释。\n服务态度敷衍，收到的商品还存在故障。",
+          "expected": "负面",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "负面",
+            "elapsed_seconds": 0.181,
+            "output_tokens": 2,
+            "tokens_per_second": 11.06
+          },
+          "tuned": {
+            "answer": "负面",
+            "elapsed_seconds": 0.208,
+            "output_tokens": 2,
+            "tokens_per_second": 9.62
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "SENT-3",
+          "prompt": "判断商品评价的情感，只输出正面、负面或中性中的一个词，不要解释。\n订单编号是AB12，包含两根连接线。",
+          "expected": "中性",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "中性",
+            "elapsed_seconds": 0.138,
+            "output_tokens": 2,
+            "tokens_per_second": 14.49
+          },
+          "tuned": {
+            "answer": "中性",
+            "elapsed_seconds": 0.2,
+            "output_tokens": 2,
+            "tokens_per_second": 10.01
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "SENT-4",
+          "prompt": "判断商品评价的情感，只输出正面、负面或中性中的一个词，不要解释。\n送到的包裹严重损坏，联系售后也无人理会。",
+          "expected": "负面",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "负面",
+            "elapsed_seconds": 0.14,
+            "output_tokens": 2,
+            "tokens_per_second": 14.28
+          },
+          "tuned": {
+            "answer": "负面",
+            "elapsed_seconds": 0.167,
+            "output_tokens": 2,
+            "tokens_per_second": 12.01
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "SENT-5",
+          "prompt": "判断商品评价的情感，只输出正面、负面或中性中的一个词，不要解释。\n帮助文档写明设备有两个接口。",
+          "expected": "中性",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "中性",
+            "elapsed_seconds": 0.152,
+            "output_tokens": 2,
+            "tokens_per_second": 13.14
+          },
+          "tuned": {
+            "answer": "中性",
+            "elapsed_seconds": 0.203,
+            "output_tokens": 2,
+            "tokens_per_second": 9.87
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "SENT-6",
+          "prompt": "判断商品评价的情感，只输出正面、负面或中性中的一个词，不要解释。\n客服很快处理好了问题，服务值得肯定。",
+          "expected": "正面",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "4bit",
+          "base": {
+            "answer": "正面",
+            "elapsed_seconds": 0.147,
+            "output_tokens": 2,
+            "tokens_per_second": 13.61
+          },
+          "tuned": {
+            "answer": "正面",
+            "elapsed_seconds": 0.187,
+            "output_tokens": 2,
+            "tokens_per_second": 10.67
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        }
+      ]
+    },
+    {
+      "model": "RWKV7-G1L-1.5B",
+      "task": "中文错别字纠正（合成）",
+      "prepared_training_samples": 24,
+      "used_training_samples": 8,
+      "training_job_id": 12,
+      "model_version_id": 7,
+      "finetuning_type": "lora",
+      "training_parameters": {
+        "data_type": "jsonl",
+        "optimizer": "adamw",
+        "my_testing": "x070",
+        "vocab_size": 65536,
+        "n_layer": 24,
+        "n_embd": 2048,
+        "head_size_a": 64,
+        "ctx_len": 128,
+        "chunk_ctx": 128,
+        "epoch_steps": 8,
+        "epoch_count": 1,
+        "epoch_save": 1,
+        "micro_bsz": 1,
+        "accumulate_grad_batches": 1,
+        "grad_cp": 0,
+        "layerwise_lr": 0,
+        "lr_init": 0.0002,
+        "lr_final": 1e-05,
+        "op": "fla",
+        "precision": "fp32",
+        "strategy": "auto",
+        "accelerator": "gpu",
+        "devices": 1,
+        "num_workers": 0,
+        "persistent_workers": false,
+        "peft_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.0
+      },
+      "training_metrics": null,
+      "test_count": 6,
+      "base_passed": 6,
+      "tuned_passed": 5,
+      "comparisons": [
+        {
+          "id": "EDIT-1",
+          "prompt": "纠正句子中的错别字，只输出改正后的句子，不要解释。\n请大家准时参家培训。",
+          "expected": "请大家准时参加培训。",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "fp16",
+          "base": {
+            "answer": " 请大家准时参加培训。",
+            "elapsed_seconds": 1.519,
+            "output_tokens": 11,
+            "tokens_per_second": 7.24
+          },
+          "tuned": {
+            "answer": " 请大家准时参加培训。",
+            "elapsed_seconds": 1.304,
+            "output_tokens": 11,
+            "tokens_per_second": 8.44
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "EDIT-2",
+          "prompt": "纠正句子中的错别字，只输出改正后的句子，不要解释。\n项目己经通过验收。",
+          "expected": "项目已经通过验收。",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "fp16",
+          "base": {
+            "answer": " 项目已经通过验收。",
+            "elapsed_seconds": 0.599,
+            "output_tokens": 10,
+            "tokens_per_second": 16.69
+          },
+          "tuned": {
+            "answer": " 项目已经通过验收。",
+            "elapsed_seconds": 0.509,
+            "output_tokens": 10,
+            "tokens_per_second": 19.65
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "EDIT-3",
+          "prompt": "纠正句子中的错别字，只输出改正后的句子，不要解释。\n请及吋提交报高。",
+          "expected": "请及时提交报告。",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "fp16",
+          "base": {
+            "answer": " 请及时提交报告。",
+            "elapsed_seconds": 0.525,
+            "output_tokens": 9,
+            "tokens_per_second": 17.16
+          },
+          "tuned": {
+            "answer": " 请及时提交报告。",
+            "elapsed_seconds": 0.379,
+            "output_tokens": 9,
+            "tokens_per_second": 23.77
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "EDIT-4",
+          "prompt": "纠正句子中的错别字，只输出改正后的句子，不要解释。\n数剧备份工作已经完成。",
+          "expected": "数据备份工作已经完成。",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "fp16",
+          "base": {
+            "answer": " 数据备份工作已经完成。",
+            "elapsed_seconds": 0.269,
+            "output_tokens": 12,
+            "tokens_per_second": 44.65
+          },
+          "tuned": {
+            "answer": " 数据备份工作已经完成。",
+            "elapsed_seconds": 0.283,
+            "output_tokens": 12,
+            "tokens_per_second": 42.45
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "EDIT-5",
+          "prompt": "纠正句子中的错别字，只输出改正后的句子，不要解释。\n请先保寸文件再退出。",
+          "expected": "请先保存文件再退出。",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "fp16",
+          "base": {
+            "answer": " 请先保存文件再退出。",
+            "elapsed_seconds": 0.353,
+            "output_tokens": 11,
+            "tokens_per_second": 31.18
+          },
+          "tuned": {
+            "answer": " 请先保存文件再退出。",
+            "elapsed_seconds": 0.26,
+            "output_tokens": 11,
+            "tokens_per_second": 42.23
+          },
+          "scores": {
+            "base": true,
+            "tuned": true
+          }
+        },
+        {
+          "id": "EDIT-6",
+          "prompt": "纠正句子中的错别字，只输出改正后的句子，不要解释。\n会议安排没有变化。",
+          "expected": "会议安排没有变化。",
+          "rule": "exact_text",
+          "temperature": 0.0,
+          "max_tokens": 96,
+          "precision": "fp16",
+          "base": {
+            "answer": " 会议安排没有变化。",
+            "elapsed_seconds": 0.298,
+            "output_tokens": 10,
+            "tokens_per_second": 33.51
+          },
+          "tuned": {
+            "answer": " 会议安排没有改变。",
+            "elapsed_seconds": 0.352,
+            "output_tokens": 10,
+            "tokens_per_second": 28.42
+          },
+          "scores": {
+            "base": true,
+            "tuned": false
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "ticket_train": {
+    "file": "data/ticket-train.json",
+    "sha256": "73a2b03b2baa4f4180477dde1259669b3a847be1856a6c0b4cd65c16ca44d091",
+    "samples": 420
+  },
+  "ticket_test": {
+    "file": "data/ticket-test.json",
+    "sha256": "d94466c09a82c8b349030bda22bb026d43fa77b52f5cc26313a45b689c3d0d44",
+    "samples": 7
+  },
+  "sentiment_train": {
+    "file": "data/sentiment-train.json",
+    "sha256": "60d84d9b225cdcff903ad23bdb083096be9fdd91ac6cc3ce13f194a5ea20f971",
+    "samples": 24
+  },
+  "sentiment_test": {
+    "file": "data/sentiment-test.json",
+    "sha256": "5fdd40a4084dbd268da844b50b78c902fa0f08d22506c23cc3eec261a2c5e1a8",
+    "samples": 6
+  },
+  "correction_train_prepared": {
+    "file": "data/correction-train-prepared.json",
+    "sha256": "2c266a84806b72323b145b24abf2195e717f083011e785ce86513b2b5edd75fd",
+    "samples": 24
+  },
+  "correction_test": {
+    "file": "data/correction-test.json",
+    "sha256": "b63c135151c2371ba56e1f3415a51fa4c64e3f2c8e8a0ace1eb4a4912a77449e",
+    "samples": 6
+  }
+}

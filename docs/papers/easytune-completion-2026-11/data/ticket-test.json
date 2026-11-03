@@ -1,0 +1,100 @@
+[
+  {
+    "id": "TEST-00-00-00",
+    "category": "服务中断",
+    "kind": "business_heldout",
+    "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-00-00-00。来源：客户服务工作台。\n问题描述：不同部门的同事都说业务站点打不开，服务整体已经停止。",
+    "expected": {
+      "code": "SQ01",
+      "priority": "P0",
+      "team": "TECH-1",
+      "sla_hours": 1
+    },
+    "rule": "strict_json",
+    "template_group": "test-0-0"
+  },
+  {
+    "id": "TEST-01-00-00",
+    "category": "重复扣款",
+    "kind": "business_heldout",
+    "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-01-00-00。来源：客户服务工作台。\n问题描述：我只提交了一次付款，但账单里出现了两笔对应这张订单的扣款。",
+    "expected": {
+      "code": "SQ02",
+      "priority": "P1",
+      "team": "FIN-2",
+      "sla_hours": 4
+    },
+    "rule": "strict_json",
+    "template_group": "test-1-0"
+  },
+  {
+    "id": "TEST-02-00-00",
+    "category": "账号锁定",
+    "kind": "business_heldout",
+    "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-02-00-00。来源：客户服务工作台。\n问题描述：同事都能进平台，唯独我输入密码失败多次后被禁止登录，提示已锁。",
+    "expected": {
+      "code": "SQ03",
+      "priority": "P2",
+      "team": "IAM-3",
+      "sla_hours": 8
+    },
+    "rule": "strict_json",
+    "template_group": "test-2-0"
+  },
+  {
+    "id": "TEST-03-00-00",
+    "category": "配送延误",
+    "kind": "business_heldout",
+    "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-03-00-00。来源：客户服务工作台。\n问题描述：说好前天交付的包裹至今仍在途中，已超过约定时效。",
+    "expected": {
+      "code": "SQ04",
+      "priority": "P2",
+      "team": "LOG-4",
+      "sla_hours": 24
+    },
+    "rule": "strict_json",
+    "template_group": "test-3-0"
+  },
+  {
+    "id": "TEST-04-00-00",
+    "category": "退货申请",
+    "kind": "business_heldout",
+    "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-04-00-00。来源：客户服务工作台。\n问题描述：这件东西已经收到了，使用需求变了，我希望退回商家。",
+    "expected": {
+      "code": "SQ05",
+      "priority": "P2",
+      "team": "AFT-5",
+      "sla_hours": 48
+    },
+    "rule": "strict_json",
+    "template_group": "test-4-0"
+  },
+  {
+    "id": "TEST-05-00-00",
+    "category": "发票抬头",
+    "kind": "business_heldout",
+    "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-05-00-00。来源：客户服务工作台。\n问题描述：付款和配送都没问题，只是票据上写的单位名称错了，请修正抬头。",
+    "expected": {
+      "code": "SQ06",
+      "priority": "P3",
+      "team": "FIN-6",
+      "sla_hours": 72
+    },
+    "rule": "strict_json",
+    "template_group": "test-5-0"
+  },
+  {
+    "id": "TEST-06-00-00",
+    "category": "信息不足或多诉求",
+    "kind": "business_heldout",
+    "prompt": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。\n工单编号：TEST-06-00-00。来源：客户服务工作台。\n问题描述：能来个人帮我一下吗？目前没有更多细节。",
+    "expected": {
+      "code": "SQ00",
+      "priority": "REVIEW",
+      "team": "HUMAN-0",
+      "sla_hours": 0
+    },
+    "rule": "strict_json",
+    "template_group": "test-6-0"
+  }
+]

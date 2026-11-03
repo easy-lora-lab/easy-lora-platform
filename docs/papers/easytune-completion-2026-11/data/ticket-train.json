@@ -1,0 +1,2102 @@
+[
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-08。来源：客户服务工作台。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-03。客户补充：请在工作台登记处理结果。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-01。客户补充：请在工作台登记处理结果。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-06。来源：客户服务工作台。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-00。来源：客户服务工作台。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-01。客户补充：请在工作台登记处理结果。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-09。客户补充：请在工作台登记处理结果。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-06。来源：客户服务工作台。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-05。客户补充：请在工作台登记处理结果。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-00。来源：客户服务工作台。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-01。客户补充：请在工作台登记处理结果。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-04。来源：客户服务工作台。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-01。客户补充：请在工作台登记处理结果。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-05。客户补充：请在工作台登记处理结果。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-02。来源：客户服务工作台。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-03。客户补充：请在工作台登记处理结果。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-06。来源：客户服务工作台。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-03。客户补充：请在工作台登记处理结果。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-02。来源：客户服务工作台。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-09。客户补充：请在工作台登记处理结果。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-06。来源：客户服务工作台。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-06。来源：客户服务工作台。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-02。来源：客户服务工作台。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-02。来源：客户服务工作台。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-08。来源：客户服务工作台。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-09。客户补充：请在工作台登记处理结果。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-08。来源：客户服务工作台。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-03。客户补充：请在工作台登记处理结果。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-01。客户补充：请在工作台登记处理结果。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-02。来源：客户服务工作台。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-07。客户补充：请在工作台登记处理结果。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-09。客户补充：请在工作台登记处理结果。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-08。来源：客户服务工作台。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-01。客户补充：请在工作台登记处理结果。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-08。来源：客户服务工作台。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-00。来源：客户服务工作台。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-05。客户补充：请在工作台登记处理结果。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-07。客户补充：请在工作台登记处理结果。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-02。来源：客户服务工作台。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-04。来源：客户服务工作台。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-04。来源：客户服务工作台。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-06。来源：客户服务工作台。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-05。客户补充：请在工作台登记处理结果。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-09。客户补充：请在工作台登记处理结果。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-04。来源：客户服务工作台。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-08。来源：客户服务工作台。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-02。来源：客户服务工作台。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-09。客户补充：请在工作台登记处理结果。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-04。来源：客户服务工作台。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-06。来源：客户服务工作台。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-01。客户补充：请在工作台登记处理结果。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-01。客户补充：请在工作台登记处理结果。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-02。来源：客户服务工作台。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-09。客户补充：请在工作台登记处理结果。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-07。客户补充：请在工作台登记处理结果。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-01。客户补充：请在工作台登记处理结果。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-06。来源：客户服务工作台。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-03。客户补充：请在工作台登记处理结果。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-05。客户补充：请在工作台登记处理结果。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-03。客户补充：请在工作台登记处理结果。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-07。客户补充：请在工作台登记处理结果。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-07。客户补充：请在工作台登记处理结果。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-04。来源：客户服务工作台。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-04。来源：客户服务工作台。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-01。客户补充：请在工作台登记处理结果。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-07。客户补充：请在工作台登记处理结果。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-03。客户补充：请在工作台登记处理结果。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-09。客户补充：请在工作台登记处理结果。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-00。来源：客户服务工作台。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-00。来源：客户服务工作台。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-08。来源：客户服务工作台。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-08。来源：客户服务工作台。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-06。来源：客户服务工作台。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-07。客户补充：请在工作台登记处理结果。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-02。来源：客户服务工作台。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-06。来源：客户服务工作台。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-07。客户补充：请在工作台登记处理结果。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-04。来源：客户服务工作台。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-01。客户补充：请在工作台登记处理结果。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-03。客户补充：请在工作台登记处理结果。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-02。来源：客户服务工作台。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-09。客户补充：请在工作台登记处理结果。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-02。来源：客户服务工作台。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-07。客户补充：请在工作台登记处理结果。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-09。客户补充：请在工作台登记处理结果。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-05。客户补充：请在工作台登记处理结果。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-02。来源：客户服务工作台。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-06。来源：客户服务工作台。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-07。客户补充：请在工作台登记处理结果。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-00。来源：客户服务工作台。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-01。客户补充：请在工作台登记处理结果。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-05。客户补充：请在工作台登记处理结果。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-00。来源：客户服务工作台。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-02。来源：客户服务工作台。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-04。来源：客户服务工作台。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-07。客户补充：请在工作台登记处理结果。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-09。客户补充：请在工作台登记处理结果。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-03。客户补充：请在工作台登记处理结果。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-06。来源：客户服务工作台。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-00。来源：客户服务工作台。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-02。来源：客户服务工作台。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-04。来源：客户服务工作台。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-09。客户补充：请在工作台登记处理结果。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-09。客户补充：请在工作台登记处理结果。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-08。来源：客户服务工作台。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-01。客户补充：请在工作台登记处理结果。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-08。来源：客户服务工作台。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-04。来源：客户服务工作台。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-04。来源：客户服务工作台。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-09。客户补充：请在工作台登记处理结果。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-09。客户补充：请在工作台登记处理结果。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-09。客户补充：请在工作台登记处理结果。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-09。客户补充：请在工作台登记处理结果。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-07。客户补充：请在工作台登记处理结果。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-06。来源：客户服务工作台。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-00。来源：客户服务工作台。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-01。客户补充：请在工作台登记处理结果。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-01。客户补充：请在工作台登记处理结果。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-08。来源：客户服务工作台。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-06。来源：客户服务工作台。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-01。客户补充：请在工作台登记处理结果。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-05。客户补充：请在工作台登记处理结果。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-01。客户补充：请在工作台登记处理结果。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-03。客户补充：请在工作台登记处理结果。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-04。来源：客户服务工作台。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-03。客户补充：请在工作台登记处理结果。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-05。客户补充：请在工作台登记处理结果。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-07。客户补充：请在工作台登记处理结果。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-08。来源：客户服务工作台。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-02。来源：客户服务工作台。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-05。客户补充：请在工作台登记处理结果。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-08。来源：客户服务工作台。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-09。客户补充：请在工作台登记处理结果。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-09。客户补充：请在工作台登记处理结果。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-07。客户补充：请在工作台登记处理结果。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-04。来源：客户服务工作台。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-05。客户补充：请在工作台登记处理结果。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-05。客户补充：请在工作台登记处理结果。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-01。客户补充：请在工作台登记处理结果。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-05。客户补充：请在工作台登记处理结果。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-00。来源：客户服务工作台。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-03。客户补充：请在工作台登记处理结果。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-03。客户补充：请在工作台登记处理结果。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-02。来源：客户服务工作台。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-06。来源：客户服务工作台。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-03。客户补充：请在工作台登记处理结果。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-02。来源：客户服务工作台。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-00。来源：客户服务工作台。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-04。来源：客户服务工作台。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-05。客户补充：请在工作台登记处理结果。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-05。客户补充：请在工作台登记处理结果。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-02。来源：客户服务工作台。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-03。客户补充：请在工作台登记处理结果。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-02。来源：客户服务工作台。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-08。来源：客户服务工作台。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-06。来源：客户服务工作台。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-00。来源：客户服务工作台。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-01。客户补充：请在工作台登记处理结果。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-09。客户补充：请在工作台登记处理结果。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-07。客户补充：请在工作台登记处理结果。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-01。客户补充：请在工作台登记处理结果。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-03。客户补充：请在工作台登记处理结果。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-02。来源：客户服务工作台。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-06。来源：客户服务工作台。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-03。客户补充：请在工作台登记处理结果。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-09。客户补充：请在工作台登记处理结果。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-00。来源：客户服务工作台。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-05。客户补充：请在工作台登记处理结果。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-03。客户补充：请在工作台登记处理结果。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-09。客户补充：请在工作台登记处理结果。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-03。客户补充：请在工作台登记处理结果。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-07。客户补充：请在工作台登记处理结果。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-05。客户补充：请在工作台登记处理结果。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-04。来源：客户服务工作台。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-09。客户补充：请在工作台登记处理结果。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-06。来源：客户服务工作台。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-01。客户补充：请在工作台登记处理结果。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-09。客户补充：请在工作台登记处理结果。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-02。来源：客户服务工作台。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-01。客户补充：请在工作台登记处理结果。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-01。客户补充：请在工作台登记处理结果。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-06。来源：客户服务工作台。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-06。来源：客户服务工作台。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-04。来源：客户服务工作台。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-01。客户补充：请在工作台登记处理结果。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-05。客户补充：请在工作台登记处理结果。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-01。客户补充：请在工作台登记处理结果。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-07。客户补充：请在工作台登记处理结果。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-04。来源：客户服务工作台。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-08。来源：客户服务工作台。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-05。客户补充：请在工作台登记处理结果。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-06。来源：客户服务工作台。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-05。客户补充：请在工作台登记处理结果。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-03。客户补充：请在工作台登记处理结果。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-02。来源：客户服务工作台。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-01。客户补充：请在工作台登记处理结果。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-06。来源：客户服务工作台。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-02。来源：客户服务工作台。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-03。客户补充：请在工作台登记处理结果。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-08。来源：客户服务工作台。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-07。客户补充：请在工作台登记处理结果。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-04。来源：客户服务工作台。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-02。来源：客户服务工作台。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-01。客户补充：请在工作台登记处理结果。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-07。客户补充：请在工作台登记处理结果。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-01。客户补充：请在工作台登记处理结果。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-07。客户补充：请在工作台登记处理结果。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-01。客户补充：请在工作台登记处理结果。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-02。来源：客户服务工作台。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-08。来源：客户服务工作台。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-05。客户补充：请在工作台登记处理结果。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-01。客户补充：请在工作台登记处理结果。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-05。客户补充：请在工作台登记处理结果。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-05。客户补充：请在工作台登记处理结果。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-06。来源：客户服务工作台。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-08。来源：客户服务工作台。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-04。来源：客户服务工作台。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-05。客户补充：请在工作台登记处理结果。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-00。来源：客户服务工作台。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-01。客户补充：请在工作台登记处理结果。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-06。来源：客户服务工作台。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-07。客户补充：请在工作台登记处理结果。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-02。来源：客户服务工作台。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-00。来源：客户服务工作台。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-06。来源：客户服务工作台。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-03。客户补充：请在工作台登记处理结果。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-00。来源：客户服务工作台。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-04。来源：客户服务工作台。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-00。来源：客户服务工作台。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-07。客户补充：请在工作台登记处理结果。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-00。来源：客户服务工作台。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-08。来源：客户服务工作台。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-05。客户补充：请在工作台登记处理结果。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-00。来源：客户服务工作台。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-08。来源：客户服务工作台。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-06。来源：客户服务工作台。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-02。来源：客户服务工作台。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-03。客户补充：请在工作台登记处理结果。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-04。来源：客户服务工作台。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-03。客户补充：请在工作台登记处理结果。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-02。来源：客户服务工作台。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-03。客户补充：请在工作台登记处理结果。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-07。客户补充：请在工作台登记处理结果。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-06。来源：客户服务工作台。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-00。来源：客户服务工作台。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-04。来源：客户服务工作台。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-04。来源：客户服务工作台。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-01。客户补充：请在工作台登记处理结果。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-05。客户补充：请在工作台登记处理结果。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-07。客户补充：请在工作台登记处理结果。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-04。来源：客户服务工作台。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-09。客户补充：请在工作台登记处理结果。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-09。客户补充：请在工作台登记处理结果。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-07。客户补充：请在工作台登记处理结果。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-03。客户补充：请在工作台登记处理结果。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-00。来源：客户服务工作台。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-09。客户补充：请在工作台登记处理结果。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-01。客户补充：请在工作台登记处理结果。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-04。来源：客户服务工作台。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-03。客户补充：请在工作台登记处理结果。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-07。客户补充：请在工作台登记处理结果。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-04。来源：客户服务工作台。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-03。客户补充：请在工作台登记处理结果。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-05。客户补充：请在工作台登记处理结果。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-07。客户补充：请在工作台登记处理结果。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-06。来源：客户服务工作台。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-01-09。客户补充：请在工作台登记处理结果。\n问题描述：物流已经超时，订单仍在运输中。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-08。来源：客户服务工作台。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-09。客户补充：请在工作台登记处理结果。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-09。客户补充：请在工作台登记处理结果。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-00。来源：客户服务工作台。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-07。客户补充：请在工作台登记处理结果。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-09。客户补充：请在工作台登记处理结果。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-06。来源：客户服务工作台。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-07。客户补充：请在工作台登记处理结果。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-09。客户补充：请在工作台登记处理结果。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-06。来源：客户服务工作台。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-06。来源：客户服务工作台。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-00。来源：客户服务工作台。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-09。客户补充：请在工作台登记处理结果。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-04。来源：客户服务工作台。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-08。来源：客户服务工作台。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-07。客户补充：请在工作台登记处理结果。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-00。来源：客户服务工作台。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-08。来源：客户服务工作台。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-03。客户补充：请在工作台登记处理结果。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-08。来源：客户服务工作台。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-02。来源：客户服务工作台。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-07。客户补充：请在工作台登记处理结果。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-02。来源：客户服务工作台。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-07。客户补充：请在工作台登记处理结果。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-02。来源：客户服务工作台。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-04。来源：客户服务工作台。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-08。来源：客户服务工作台。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-00。来源：客户服务工作台。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-02。来源：客户服务工作台。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-08。来源：客户服务工作台。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-06。来源：客户服务工作台。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-00。来源：客户服务工作台。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-05。客户补充：请在工作台登记处理结果。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-02。来源：客户服务工作台。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-00。来源：客户服务工作台。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-04-04。来源：客户服务工作台。\n问题描述：产品不符合需求，希望提交退货请求。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-04。来源：客户服务工作台。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-01。客户补充：请在工作台登记处理结果。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-05。客户补充：请在工作台登记处理结果。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-08。来源：客户服务工作台。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-05。客户补充：请在工作台登记处理结果。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-05。客户补充：请在工作台登记处理结果。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-07。客户补充：请在工作台登记处理结果。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-01。客户补充：请在工作台登记处理结果。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-03。客户补充：请在工作台登记处理结果。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-06。来源：客户服务工作台。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-06。来源：客户服务工作台。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-02。来源：客户服务工作台。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-08。来源：客户服务工作台。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-04。来源：客户服务工作台。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-05。客户补充：请在工作台登记处理结果。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-05。客户补充：请在工作台登记处理结果。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-05。客户补充：请在工作台登记处理结果。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-02。来源：客户服务工作台。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-00。来源：客户服务工作台。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-06。来源：客户服务工作台。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-05。客户补充：请在工作台登记处理结果。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-08。来源：客户服务工作台。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-00。来源：客户服务工作台。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-03。客户补充：请在工作台登记处理结果。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-03。客户补充：请在工作台登记处理结果。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-04。来源：客户服务工作台。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-02。来源：客户服务工作台。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-08。来源：客户服务工作台。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-01。客户补充：请在工作台登记处理结果。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-06。来源：客户服务工作台。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-03-08。来源：客户服务工作台。\n问题描述：配送延误了，超过约定日期仍未到货。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-02。来源：客户服务工作台。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-01。客户补充：请在工作台登记处理结果。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-00。来源：客户服务工作台。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-08。来源：客户服务工作台。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-09。客户补充：请在工作台登记处理结果。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-08。来源：客户服务工作台。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-04。来源：客户服务工作台。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-00。来源：客户服务工作台。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-04。来源：客户服务工作台。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-07。客户补充：请在工作台登记处理结果。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-09。客户补充：请在工作台登记处理结果。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-09。客户补充：请在工作台登记处理结果。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-03。客户补充：请在工作台登记处理结果。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-08。来源：客户服务工作台。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-00。来源：客户服务工作台。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-07。客户补充：请在工作台登记处理结果。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-00-04。来源：客户服务工作台。\n问题描述：我有个问题，请帮忙看看。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-08。来源：客户服务工作台。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-02。来源：客户服务工作台。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-04。来源：客户服务工作台。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-04。来源：客户服务工作台。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-03。客户补充：请在工作台登记处理结果。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-03。客户补充：请在工作台登记处理结果。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-03-01。客户补充：请在工作台登记处理结果。\n问题描述：发票上的公司名字不正确，请改抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-00-08。来源：客户服务工作台。\n问题描述：公司所有人都打不开业务系统，提示服务不可用。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-05。客户补充：请在工作台登记处理结果。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-08。来源：客户服务工作台。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-04-02。来源：客户服务工作台。\n问题描述：快递未按承诺时间送达，请催查。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-07。客户补充：请在工作台登记处理结果。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-00。来源：客户服务工作台。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-05。客户补充：请在工作台登记处理结果。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-05-05。客户补充：请在工作台登记处理结果。\n问题描述：已经收到订单，需要安排退货流程。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-03。客户补充：请在工作台登记处理结果。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-04。来源：客户服务工作台。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-02-05。客户补充：请在工作台登记处理结果。\n问题描述：只有我的用户账号被锁，其他同事可以正常登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-00-00。来源：客户服务工作台。\n问题描述：发票抬头写错了，需要修改公司名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-00。来源：客户服务工作台。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-06。来源：客户服务工作台。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-08。来源：客户服务工作台。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-03。客户补充：请在工作台登记处理结果。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-00。来源：客户服务工作台。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-00-06。来源：客户服务工作台。\n问题描述：包裹超过承诺配送日期还没送达。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-02-03。客户补充：请在工作台登记处理结果。\n问题描述：预计昨天送到的货今天还没有收到。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-03。客户补充：请在工作台登记处理结果。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-06。来源：客户服务工作台。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-00-07。客户补充：请在工作台登记处理结果。\n问题描述：商品已收到，现在申请办理退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-07。客户补充：请在工作台登记处理结果。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-05-01。客户补充：请在工作台登记处理结果。\n问题描述：仅下单一次，账户余额却被扣了两遍。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-03-09。客户补充：请在工作台登记处理结果。\n问题描述：输错密码后账号被系统锁住了。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-03-07。客户补充：请在工作台登记处理结果。\n问题描述：业务系统整体宕机，所有部门均受影响。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-01-05。客户补充：请在工作台登记处理结果。\n问题描述：业务平台全面停止响应，所有员工都无法访问。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-00。来源：客户服务工作台。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-00。来源：客户服务工作台。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-00-04。来源：客户服务工作台。\n问题描述：我的账号因密码输错次数过多被锁定。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-04-04。来源：客户服务工作台。\n问题描述：银行流水显示同一订单重复收款两次。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-03-02。来源：客户服务工作台。\n问题描述：同时要求处理重复扣款和发票抬头错误。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-05-03。客户补充：请在工作台登记处理结果。\n问题描述：个人账号触发锁定，现无法登录。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-09。客户补充：请在工作台登记处理结果。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-02。来源：客户服务工作台。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-04。来源：客户服务工作台。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-00。来源：客户服务工作台。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-04-02。来源：客户服务工作台。\n问题描述：我既要退货，也要修改发票抬头。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-01-06。来源：客户服务工作台。\n问题描述：收到的商品不合适，想退回去。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-02-09。客户补充：请在工作台登记处理结果。\n问题描述：开票名称有误，希望修改发票抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-04-06。来源：客户服务工作台。\n问题描述：登录页面显示此账号已锁定，请协助解锁。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-06。来源：客户服务工作台。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-02-09。客户补充：请在工作台登记处理结果。\n问题描述：系统有点问题，但不确定是什么。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-03-05-01。客户补充：请在工作台登记处理结果。\n问题描述：订单已逾期未交付，包裹还在路上。",
+    "output": "{\"code\":\"SQ04\",\"priority\":\"P2\",\"team\":\"LOG-4\",\"sla_hours\":24}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-01。客户补充：请在工作台登记处理结果。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-05-08。来源：客户服务工作台。\n问题描述：企业业务系统全面离线，多个部门同时报告中断。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-02-00。来源：客户服务工作台。\n问题描述：买家决定退回已签收的货物，请办理退货申请。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-05-09。客户补充：请在工作台登记处理结果。\n问题描述：已收到发票，但抬头有错别字，请更正。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-04-08。来源：客户服务工作台。\n问题描述：需要把发票抬头修改为正确企业名称。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-01-08。来源：客户服务工作台。\n问题描述：具体情况还没描述，想找客服。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-01。客户补充：请在工作台登记处理结果。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-02-01-00。来源：客户服务工作台。\n问题描述：登录提示账号锁定，需要解除限制。",
+    "output": "{\"code\":\"SQ03\",\"priority\":\"P2\",\"team\":\"IAM-3\",\"sla_hours\":8}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-04-03-00。来源：客户服务工作台。\n问题描述：货已经签收，我要申请退货。",
+    "output": "{\"code\":\"SQ05\",\"priority\":\"P2\",\"team\":\"AFT-5\",\"sla_hours\":48}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-02-07。客户补充：请在工作台登记处理结果。\n问题描述：整个公司现在都进不了系统，页面报503。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-00-08。来源：客户服务工作台。\n问题描述：同一笔订单被扣了两次钱，请核查重复支付。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-05。客户补充：请在工作台登记处理结果。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-05-01-07。客户补充：请在工作台登记处理结果。\n问题描述：请更正已开发票上的企业抬头。",
+    "output": "{\"code\":\"SQ06\",\"priority\":\"P3\",\"team\":\"FIN-6\",\"sla_hours\":72}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-03-09。客户补充：请在工作台登记处理结果。\n问题描述：买一件商品却扣了两次相同费用。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-06-05-07。客户补充：请在工作台登记处理结果。\n问题描述：账号被锁定，另外还有订单重复扣款。",
+    "output": "{\"code\":\"SQ00\",\"priority\":\"REVIEW\",\"team\":\"HUMAN-0\",\"sla_hours\":0}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-02-03。客户补充：请在工作台登记处理结果。\n问题描述：一个订单产生了两笔相同扣款，请处理。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-01-01-03。客户补充：请在工作台登记处理结果。\n问题描述：订单支付成功后又被扣了一遍相同金额。",
+    "output": "{\"code\":\"SQ02\",\"priority\":\"P1\",\"team\":\"FIN-2\",\"sla_hours\":4}"
+  },
+  {
+    "instruction": "请按星桥演示企业的工单规范处理以下工单。只输出一个 JSON 对象，且仅含 code、priority、team、sla_hours 四个字段；sla_hours 必须是整数。不要解释，不要 Markdown。",
+    "input": "工单编号：TRAIN-00-04-05。客户补充：请在工作台登记处理结果。\n问题描述：平台全站无法使用，所有账号访问都失败。",
+    "output": "{\"code\":\"SQ01\",\"priority\":\"P0\",\"team\":\"TECH-1\",\"sla_hours\":1}"
+  }
+]
